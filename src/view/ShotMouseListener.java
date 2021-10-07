@@ -10,22 +10,31 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import model.Vector2D;
+import tests.InputPanel;
+
 public class ShotMouseListener implements MouseListener, MouseMotionListener {
 
 	private Point startingPoint = null;
 	private Point currentPoint = null;
-	private final JComponent father;
+	private final InputPanel father;
 	private boolean enabled = true;
 	
-	public ShotMouseListener(JComponent c) {
+	public ShotMouseListener(InputPanel c) {
 		 this.father = c;
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		this.currentPoint = e.getPoint();
-		if (this.enabled) {
-			this.father.repaint();
+		synchronized (this) {
+			if (this.enabled) {
+				Vector2D direction = new Vector2D(this.startingPoint.getX(),
+						this.startingPoint.getY(),
+						this.currentPoint.getX(),
+						this.currentPoint.getY());
+				this.father.updateIndicator(direction);
+			}
 		}
 	}
 	
@@ -61,14 +70,13 @@ public class ShotMouseListener implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
-	public boolean isEnabled() {
+	public synchronized boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public synchronized void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
