@@ -1,15 +1,9 @@
 package view;
 
-import java.util.List;
-
-import model.MapObject;
-
-public interface GameOutput {
-
-	void updateObjectsPosition(List<MapObject> objects);
+public interface GameOutput extends MapOutput {
+	
+	void updateTotalShotsCount(int totalShots);
 	
 	void gameFinished();
-	
-	void mapFinished();
 	
 }

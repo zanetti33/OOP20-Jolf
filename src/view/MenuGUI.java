@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import controller.Navigator;
+import controller.NavigatorImpl;
+
 public class MenuGUI extends JFrame {
 	/**
 	 * 
@@ -21,13 +24,16 @@ public class MenuGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static final Dimension MENU_DIMENSION = new Dimension(400, 600);
 	
+	private final Navigator navigator = new NavigatorImpl();
+	
 	private final JPanel panel = new JPanel();
 	private final JPanel titlePanel = new JPanel();
 	private final Border border = new LineBorder(this.getBackground(), 70);
-	private final GridLayout buttonLayout = new GridLayout(6, 1);
+	private final GridLayout buttonLayout = new GridLayout(7, 1);
 	private final JLabel title = new MyTitle();
 	private final JButton playButton = new JButton("PLAY");
 	private final JButton levelsButton = new JButton("LEVELS");
+	private final JButton leaderboardButton = new JButton("LEADERBOARD");
 	private final JButton multiplayerButton = new JButton("1 VS 1");
 	private final JButton optionButton = new JButton("OPTIONS");
 	private final JButton quitButton = new JButton("QUIT");
@@ -43,6 +49,7 @@ public class MenuGUI extends JFrame {
 		this.panel.add(this.titlePanel);
 		this.titlePanel.add(this.title);
 		this.panel.add(this.playButton);
+		this.panel.add(this.leaderboardButton);
 		this.panel.add(this.levelsButton);
 		this.panel.add(this.multiplayerButton);
 		this.panel.add(this.optionButton);
@@ -51,6 +58,7 @@ public class MenuGUI extends JFrame {
 		this.multiplayerButton.setEnabled(false);
 		this.multiplayerButton.addActionListener(this.listener);
 		this.playButton.addActionListener(this.listener);
+		this.leaderboardButton.addActionListener(this.listener);
 		this.levelsButton.addActionListener(this.listener);
 		this.optionButton.addActionListener(this.listener);
 		this.quitButton.addActionListener(this.listener);
@@ -74,15 +82,19 @@ public class MenuGUI extends JFrame {
 			if (e.getSource().equals(MenuGUI.this.playButton)) {
 				JFrame newGUI = new StartingGUI();
 				newGUI.setVisible(true);
-				MenuGUI.this.dispose();
+				MenuGUI.this.setVisible(false);;
+			} else if (e.getSource().equals(MenuGUI.this.leaderboardButton)) {
+				JFrame newGUI = new LeaderboardGUI(MenuGUI.this.navigator.getLeaderboard(), MenuGUI.this);
+				newGUI.setVisible(true);
+				MenuGUI.this.setVisible(false);
 			} else if (e.getSource().equals(MenuGUI.this.levelsButton)) {
-				//temporary (we need the class for the gui where we select levels)
-				JFrame newGUI = null;
-				MenuGUI.this.dispose();
+				JFrame newGUI = new LevelsGUI(MenuGUI.this.navigator.getLeaderboard(), MenuGUI.this);
+				newGUI.setVisible(true);
+				MenuGUI.this.setVisible(false);
 			} else if (e.getSource().equals(MenuGUI.this.optionButton)) {
-				//temporary (we need the class for the gui where we display game options)
-				JFrame newGUI = null;
-				MenuGUI.this.dispose();
+				JFrame newGUI = new OptionGUI(MenuGUI.this);
+				newGUI.setVisible(true);
+				MenuGUI.this.setVisible(false);
 			} else if (e.getSource().equals(MenuGUI.this.multiplayerButton)) {
 				//to implement
 			} else if (e.getSource().equals(MenuGUI.this.quitButton)) {
