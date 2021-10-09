@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -82,13 +83,18 @@ public class MenuGUI extends JFrame {
 			if (e.getSource().equals(MenuGUI.this.playButton)) {
 				JFrame newGUI = new StartingGUI();
 				newGUI.setVisible(true);
-				MenuGUI.this.setVisible(false);;
-			} else if (e.getSource().equals(MenuGUI.this.leaderboardButton)) {
-				JFrame newGUI = new LeaderboardGUI(MenuGUI.this.navigator.getLeaderboard(), MenuGUI.this);
-				newGUI.setVisible(true);
 				MenuGUI.this.setVisible(false);
+			} else if (e.getSource().equals(MenuGUI.this.leaderboardButton)) {
+				JFrame newGUI;
+				try {
+					newGUI = new LeaderboardGUI(MenuGUI.this.navigator.getLeaderboard(), MenuGUI.this);
+					newGUI.setVisible(true);
+					MenuGUI.this.setVisible(false);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			} else if (e.getSource().equals(MenuGUI.this.levelsButton)) {
-				JFrame newGUI = new LevelsGUI(MenuGUI.this.navigator.getLeaderboard(), MenuGUI.this);
+				JFrame newGUI = new LevelsGUI(MenuGUI.this.navigator.getCourses(), MenuGUI.this);
 				newGUI.setVisible(true);
 				MenuGUI.this.setVisible(false);
 			} else if (e.getSource().equals(MenuGUI.this.optionButton)) {
