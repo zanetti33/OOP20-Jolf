@@ -2,10 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface Navigator {
 	
-	List<String> getLeaderboard() throws IOException;
+	Map<String,Integer> getLeaderboard() throws IOException;
 	
 	List<String> getMaps();
 	

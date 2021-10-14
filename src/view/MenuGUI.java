@@ -27,7 +27,7 @@ public class MenuGUI extends JFrame {
 	
 	private final Navigator navigator = new NavigatorImpl();
 	
-	private final JPanel panel = new JPanel();
+	private final JPanel mainPanel = new JPanel();
 	private final JPanel titlePanel = new JPanel();
 	private final Border border = new LineBorder(this.getBackground(), 70);
 	private final GridLayout buttonLayout = new GridLayout(7, 1);
@@ -44,17 +44,17 @@ public class MenuGUI extends JFrame {
 		super();
 		this.setSize(MENU_DIMENSION);
 		this.buttonLayout.setVgap(10);
-		panel.setLayout(buttonLayout);
-		this.panel.setBorder(this.border);
-		this.add(this.panel);
-		this.panel.add(this.titlePanel);
+		this.mainPanel.setLayout(this.buttonLayout);
+		this.mainPanel.setBorder(this.border);
+		this.add(this.mainPanel);
+		this.mainPanel.add(this.titlePanel);
 		this.titlePanel.add(this.title);
-		this.panel.add(this.playButton);
-		this.panel.add(this.leaderboardButton);
-		this.panel.add(this.levelsButton);
-		this.panel.add(this.multiplayerButton);
-		this.panel.add(this.optionButton);
-		this.panel.add(this.quitButton);
+		this.mainPanel.add(this.playButton);
+		this.mainPanel.add(this.leaderboardButton);
+		this.mainPanel.add(this.levelsButton);
+		this.mainPanel.add(this.multiplayerButton);
+		this.mainPanel.add(this.optionButton);
+		this.mainPanel.add(this.quitButton);
 		//to implement
 		this.multiplayerButton.setEnabled(false);
 		this.multiplayerButton.addActionListener(this.listener);
@@ -87,7 +87,7 @@ public class MenuGUI extends JFrame {
 			} else if (e.getSource().equals(MenuGUI.this.leaderboardButton)) {
 				JFrame newGUI;
 				try {
-					newGUI = new LeaderboardGUI(MenuGUI.this.navigator.getLeaderboard(), MenuGUI.this);
+					newGUI = new LeaderboardGUI(MenuGUI.this.navigator.getLeaderboard());
 					newGUI.setVisible(true);
 					MenuGUI.this.setVisible(false);
 				} catch (IOException e1) {
