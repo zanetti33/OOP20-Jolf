@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.util.List;
 
 import model.MapObject;
@@ -32,12 +33,6 @@ public class GameGUI implements GameOutput, GameInput {
 	}
 
 	@Override
-	public void setEnable(boolean enable) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void updateTotalShotsCount(int totalShots) {
 		// TODO Auto-generated method stub
 
@@ -47,6 +42,12 @@ public class GameGUI implements GameOutput, GameInput {
 	public void gameFinished() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void enableShot(Point ballPosition) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

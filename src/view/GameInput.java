@@ -1,7 +1,9 @@
 package view;
 
+import java.awt.Point;
+
 public interface GameInput {
 
-	void setEnable(boolean enable);
+	void enableShot(Point ballPosition);
 	
 }
