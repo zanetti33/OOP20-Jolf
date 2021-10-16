@@ -8,5 +8,7 @@ public interface Map {
 	Dimension getSize();
 	
 	List<MapObject> getObjects();
+
+	List<MovingObject> getMovingObjects();
 	
 }
