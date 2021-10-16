@@ -31,7 +31,7 @@ public class MenuGUI extends JFrame {
 	private final JPanel titlePanel = new JPanel();
 	private final Border border = new LineBorder(this.getBackground(), 70);
 	private final GridLayout buttonLayout = new GridLayout(7, 1);
-	private final JLabel title = new MyTitle();
+	private final JLabel title = new MyTitle("JOLF");
 	private final JButton playButton = new JButton("PLAY");
 	private final JButton levelsButton = new JButton("LEVELS");
 	private final JButton leaderboardButton = new JButton("LEADERBOARD");
