@@ -19,7 +19,7 @@ public class StartingGUI extends JFrame {
 	
 	private final JPanel panel = new JPanel();
 	private final JButton startButton = new JButton("START");
-	private final JLabel title = new MyTitle();
+	private final JLabel title = new MyTitle("JOLF");
 	private final JTextField nameTextField = new JTextField("Insert name here");
 	
 	public StartingGUI() {
