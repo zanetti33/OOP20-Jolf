@@ -2,7 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -16,7 +15,7 @@ import javax.swing.JPanel;
 public class LeaderboardGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private static final int MAX_PLAYERS = 10;
+	private static final int MAX_PLAYERS_ON_LEADERBOARD = 10;
 	private static final Dimension LEADERBOARD_DIMENSION = new Dimension(500, 770);
 	private static final Dimension LINE_DIMENSION = new Dimension(500, 77);
 	
@@ -24,7 +23,7 @@ public class LeaderboardGUI extends JFrame {
 	private final JPanel titlePanel = new JPanel();
 	private final JLabel title = new MyTitle("LEADERBOARD");
 
-	public LeaderboardGUI(Map<String,Integer> leaderboard) {
+	public LeaderboardGUI(Map<String,Integer> leaderboard, MenuGUI menuGUI) {
 		super();
 		this.setSize(LEADERBOARD_DIMENSION);
 		this.setLayout(new BorderLayout());
@@ -39,7 +38,7 @@ public class LeaderboardGUI extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {
-				MyOptionPane.showClosingDialog();
+				MyOptionPane.returnToMenu(LeaderboardGUI.this, menuGUI);
 			}
 		});
 	}
@@ -47,9 +46,9 @@ public class LeaderboardGUI extends JFrame {
 	private JPanel leaderboardPanel(Map<String,Integer> leaderboard) {
 		JPanel panel = new JPanel();
 		int position = 1;
-		panel.setLayout(new GridLayout(MAX_PLAYERS,1));
+		panel.setLayout(new GridLayout(MAX_PLAYERS_ON_LEADERBOARD,1));
 		for (Entry<String, Integer> e : leaderboard.entrySet()) {
-			//System.out.println(e); 
+			System.out.println(e); 
 			//TODO: Doesn't display correctly: the first element is never displayed...
 			final JPanel internPanel = new JPanel();
 			internPanel.setSize(LINE_DIMENSION);
