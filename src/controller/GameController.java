@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.util.List;
 
 import model.Course;
+import model.ECourse;
 import model.Map;
 import model.MapObject;
 import model.Vector2D;
@@ -29,6 +30,10 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 		this.players = 1;
 	}
 	
+	public GameController(String playerName, String course) {
+		this(playerName, ECourse.get(course));
+	}
+
 	public void start() {
 		this.nextMap();
 	}
@@ -40,8 +45,9 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 			this.mapController.setInput(this);
 			this.mapController.start();
 			this.mapIndex++;
+		} else {
+			this.myOutput.gameFinished();
 		}
-		this.myOutput.gameFinished();
 	}
 	
 	@Override
@@ -78,6 +84,7 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 
 	@Override
 	public void setSize(Dimension size) {
+		this.myOutput.setSize(size);
 	}
 
 	@Override

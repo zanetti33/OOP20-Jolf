@@ -24,13 +24,15 @@ public class MenuGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final Dimension MENU_DIMENSION = new Dimension(400, 600);
+	private static final int BORDER_WIDTH = 70;
+	private static final int GRID_ROWS = 7;
 	
 	private final Navigator navigator = new NavigatorImpl();
 	
 	private final JPanel mainPanel = new JPanel();
 	private final JPanel titlePanel = new JPanel();
-	private final Border border = new LineBorder(this.getBackground(), 70);
-	private final GridLayout buttonLayout = new GridLayout(7, 1);
+	private final Border border = new LineBorder(this.getBackground(), BORDER_WIDTH);
+	private final GridLayout buttonLayout = new GridLayout(GRID_ROWS, 1);
 	private final JLabel title = new MyTitle("JOLF");
 	private final JButton playButton = new JButton("PLAY");
 	private final JButton levelsButton = new JButton("LEVELS");
@@ -76,7 +78,7 @@ public class MenuGUI extends JFrame {
 		@Override
 		public void actionPerformed(final ActionEvent e) {
 			if (e.getSource().equals(MenuGUI.this.playButton)) {
-				JFrame newGUI = new StartingGUI();
+				JFrame newGUI = new StartingGUI(MenuGUI.this.navigator.getCourses(), MenuGUI.this);
 				newGUI.setVisible(true);
 				MenuGUI.this.setVisible(false);
 			} else if (e.getSource().equals(MenuGUI.this.leaderboardButton)) {

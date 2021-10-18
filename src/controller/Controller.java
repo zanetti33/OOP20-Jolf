@@ -11,5 +11,7 @@ public interface Controller {
 	void setInput(GameInput inputView);
 	
 	void setOutput(GameOutput outputView);
+
+	void start();
 	
 }
