@@ -9,6 +9,10 @@ public interface Map {
 	
 	List<MapObject> getObjects();
 
-	List<MovingObject> getMovingObjects();
+	void startMovingObjects();
+	
+	boolean ballsAreMoving();
+	
+	List<Ball> getBalls();
 	
 }

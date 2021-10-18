@@ -12,8 +12,12 @@ public abstract class MovingObject extends Thread implements MapObject {
 	private long lastTimeUpdate;
 	
 	public MovingObject(Point startingPos) {
+		this(startingPos, Vector2D.nullVector());
+	}
+	
+	public MovingObject(Point startingPos, Vector2D startingSpeed) {
 		this.position = startingPos;
-		this.speed = Vector2D.nullVector();
+		this.speed = startingSpeed;
 		this.stop = false;
 	}
 	
@@ -32,6 +36,7 @@ public abstract class MovingObject extends Thread implements MapObject {
 				this.lastTimeUpdate = time;
 				updateSpeed(timeElapsed);
 				updatePosition(timeElapsed);
+				applyConstraints();
 				Thread.sleep(UPDATE_RATE);
 			}
 		} catch(Exception e) {
@@ -39,15 +44,20 @@ public abstract class MovingObject extends Thread implements MapObject {
 		}
 	}
 	
-	public boolean isStill() {
-		return speed.equals(Vector2D.nullVector());
+	protected abstract void updateSpeed(long timeElapsed);
+
+	protected abstract void applyConstraints();
+
+	public boolean isMoving() {
+		return !speed.equals(Vector2D.nullVector());
 	}
 
 	public void setSpeed(Vector2D newSpeed) {
 		this.speed = newSpeed;
 	}
 	
-	private synchronized void updateSpeed(final long timeElapsed) {
+	public Vector2D getSpeed() {
+		return this.speed;
 	}
 
 	private synchronized void updatePosition(final long timeElapsed) {
@@ -59,7 +69,4 @@ public abstract class MovingObject extends Thread implements MapObject {
 	@Override
 	public abstract void draw(Graphics g);
 	
-	@Override
-	public abstract ObjectType getType();
-
 }

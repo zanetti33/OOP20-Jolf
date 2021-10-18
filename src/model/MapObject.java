@@ -9,6 +9,6 @@ public interface MapObject {
 	
 	void draw(Graphics g);
 	
-	ObjectType getType();
+	void applyConstraintTo(Ball ball);
 	
 }

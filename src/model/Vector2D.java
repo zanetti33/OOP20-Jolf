@@ -50,6 +50,11 @@ public class Vector2D {
 				Double.valueOf(this.getY() + p.getY()).intValue());
 	}
 	
+	public void multiply(double a) {
+		this.x *= a;
+		this.y *= a;
+	}
+	
 	@Override
 	public String toString() {
 		return "Vector2D [x=" + x + ", y=" + y + "]";

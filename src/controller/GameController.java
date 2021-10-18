@@ -17,6 +17,7 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 	private GameOutput myOutput;
 	private GameInput myInput;
 	private final List<Map> maps;
+	private final int players;
 	private MapController mapController;
 	private int mapIndex;
 	private int totalShots;
@@ -25,6 +26,7 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 		this.totalShots = 0;
 		this.maps = course.getMaps();
 		this.mapIndex = 0;
+		this.players = 1;
 	}
 	
 	public void start() {
@@ -33,7 +35,7 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 	
 	private void nextMap() {
 		if (this.mapIndex < this.maps.size()) {
-			this.mapController = new MapController(this.maps.get(this.mapIndex));
+			this.mapController = new MapController(this.maps.get(this.mapIndex), this.players);
 			this.mapController.setOutput(this);
 			this.mapController.setInput(this);
 			this.mapController.start();
