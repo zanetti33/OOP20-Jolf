@@ -1,5 +1,5 @@
 package tests;
-
+@SuppressWarnings("unused")
 import java.awt.Color;
 import java.awt.Point;
 

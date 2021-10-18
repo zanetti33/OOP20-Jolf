@@ -15,11 +15,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
+import model.ECourse;
+import model.EMap;
+
 public class NavigatorImpl implements Navigator {
 	
 	public static final String SEP = File.separator;
-	public static final String FILE_NAME = System.getProperty("user.home") + SEP + "Desktop"
-			+ SEP + "workspace" + SEP + "Jolf" + SEP + "leaderboard.txt";
+	public static final String FILE_NAME = System.getProperty("user.dir") + SEP + "leaderboard.txt";
 
 	@Override
 	public Map<String,Integer> getLeaderboard() throws IOException {
@@ -60,12 +62,20 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public List<String> getMaps() {
-		return List.of();
+		final List<String> names = new ArrayList<String>();
+		for (EMap map : EMap.values()) {
+			names.add(map.getName());
+		}
+		return names;
 	}
 
 	@Override
 	public List<String> getCourses() {
-		return List.of();
+		final List<String> names = new ArrayList<String>();
+		for (ECourse course : ECourse.values()) {
+			names.add(course.getName());
+		}
+		return names;
 	}
 	
 	private <K, V extends Comparable<? super V>> Map<K,V> sortByValue(Map<K,V> map) {

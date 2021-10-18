@@ -2,26 +2,33 @@ package model;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 
 public enum EMap implements Map {
 
-	STARTING_GROUND(new Dimension(720, 400), List.of(new Ball(new Point(0, 0))), List.of(), List.of()),
-	PIPPO(new Dimension(720, 400), List.of(), List.of(), List.of());
+	STARTING_GROUND("Starting Ground", new Dimension(720, 400), List.of(new Ball(new Point(0, 0))), List.of(), List.of()),
+	PIPPO("Pippo", new Dimension(720, 400), List.of(new Ball(new Point(50, 50))), List.of(), List.of());
 	
+	private final String name;
 	private final Dimension size;
 	private final List<Ball> balls;
 	private final List<MovingObject> movingObjects;
 	private final List<MapObject> objects;
 	
-	private EMap(Dimension size, List<Ball> balls, List<MovingObject> otherMovingObjects, List<MapObject> otherObjects) {
+	private EMap(String name, Dimension size, List<Ball> balls, List<MovingObject> otherMovingObjects, List<MapObject> otherObjects) {
+		this.name = name;
 		this.size = size;
 		this.balls = balls;
 		this.balls.stream().forEach(ball -> ball.setMap(this));
-		this.movingObjects = otherMovingObjects;
+		this.movingObjects = new ArrayList<MovingObject>(otherMovingObjects);
 		this.movingObjects.addAll(balls);
-		this.objects = otherObjects;
+		this.objects = new ArrayList<MapObject>(otherObjects);
 		this.objects.addAll(movingObjects);
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 
 	@Override

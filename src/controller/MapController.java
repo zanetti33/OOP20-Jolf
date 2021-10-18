@@ -46,6 +46,7 @@ public class MapController extends Thread implements Controller {
 	@Override
 	public void start() {
 		this.currentShots = 0;
+		this.myOutput.setSize(this.map.getSize());
 		this.myOutput.updateShotCount(this.currentShots);
 		this.playing = true;
 		this.map.startMovingObjects();

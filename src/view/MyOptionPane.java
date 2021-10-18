@@ -17,10 +17,16 @@ public class MyOptionPane extends JOptionPane {
 	}
 	
 	public static void returnToMenu(JFrame thisGUI, MenuGUI menuGUI) {
-		if (showConfirmDialog(null, "Return to menu?", "Closing...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-			thisGUI.setVisible(false);
+		if (showConfirmDialog(thisGUI, "Return to menu?", "Closing...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			thisGUI.dispose();
 			menuGUI.setVisible(true);
 		}
+	}
+	
+	public static void gameOver(JFrame thisGUI, MenuGUI menuGUI, int totalShots) {
+		JOptionPane.showMessageDialog(thisGUI, "Well done! You completed the course with " + totalShots + " shots!");
+		thisGUI.dispose();
+		menuGUI.setVisible(true);
 	}
 	
 }
