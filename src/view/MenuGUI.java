@@ -82,7 +82,7 @@ public class MenuGUI extends JFrame {
 			} else if (e.getSource().equals(MenuGUI.this.leaderboardButton)) {
 				JFrame newGUI;
 				try {
-					newGUI = new LeaderboardGUI(MenuGUI.this.navigator.getLeaderboard());
+					newGUI = new LeaderboardGUI(MenuGUI.this.navigator.getLeaderboard(), MenuGUI.this);
 					newGUI.setVisible(true);
 					MenuGUI.this.setVisible(false);
 				} catch (IOException e1) {

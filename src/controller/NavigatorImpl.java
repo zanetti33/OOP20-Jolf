@@ -38,7 +38,6 @@ public class NavigatorImpl implements Navigator {
 				} else {
 					leaderboard.put(name, score);
 				}
-				//writeOnLeaderboard(name, score-10);      //test
 				s = Optional.ofNullable(reader.readLine());
 			}
 		} catch (FileNotFoundException e) {
@@ -50,8 +49,7 @@ public class NavigatorImpl implements Navigator {
 	
 	@Override
 	public void writeOnLeaderboard(String player, int score) throws IOException {
-		//TODO: Fix writing on files... it always deletes before writing
-		try (final BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+		try (final BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
 			String line = player + "=" + score;
 			writer.append(line);
 			writer.newLine();
