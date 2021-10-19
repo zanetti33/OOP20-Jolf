@@ -3,6 +3,7 @@ package controller;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.IOException;
 import java.util.List;
 
 import model.Course;
@@ -19,6 +20,8 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 	private GameInput myInput;
 	private final List<Map> maps;
 	private final int players;
+	private final String playerName;
+	private final Navigator navigator;
 	private MapController mapController;
 	private int mapIndex;
 	private int totalShots;
@@ -28,6 +31,8 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 		this.maps = course.getMaps();
 		this.mapIndex = 0;
 		this.players = 1;
+		this.playerName = playerName;
+		this.navigator = new NavigatorImpl();
 	}
 	
 	public GameController(String playerName, String course) {
@@ -93,6 +98,11 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 
 	@Override
 	public void gameFinished() {
+		try {
+			this.navigator.writeOnLeaderboard(this.playerName, this.totalShots);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
