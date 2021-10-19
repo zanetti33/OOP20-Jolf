@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import javax.swing.JPanel;
@@ -13,6 +14,7 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final Color INDICATOR_COLOR = Color.RED;
 	private final Controller myController;
 	private final ShotListener mouseListener = new ShotListener(this);
 	
@@ -27,11 +29,11 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 	}
 	
 	@Override
-	public void paint(Graphics g) {
-		g.clearRect(0, 0, this.getWidth(), this.getHeight());
+	public void paintComponent(Graphics g) {
 		synchronized (this) {
 			if (this.applicationPoint != null && this.direction != null) {
 				Point directionTip = this.direction.traslate(this.applicationPoint);
+				g.setColor(INDICATOR_COLOR);
 				g.drawLine(Double.valueOf(this.applicationPoint.getX()).intValue(),
 						Double.valueOf(this.applicationPoint.getY()).intValue(),
 						Double.valueOf(directionTip.getX()).intValue(),
@@ -55,6 +57,9 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 	
 	public void shoot() {
 		this.myController.newShot(this.direction);
+		this.applicationPoint = null;
+		this.direction = null;
+		repaint();
 	}
 	
 }

@@ -1,8 +1,7 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
@@ -13,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 import controller.Controller;
 import model.MapObject;
@@ -22,8 +20,7 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 	private final static String DEFAULT_TOTAL_SHOTS_LABEL = "Total Shots: ";
 	private final static String DEFAULT_SHOTS_LABEL = "Map Shots: ";
-	private final static int BORDER_THICKNESS = 10;
-	private final static Color BORDER_COLOR = Color.BLUE;
+	private final static int BORDER_THICKNESS = 20;
 	/**
 	 * 
 	 */
@@ -43,6 +40,8 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 		@Override
 		public void paint(Graphics g) {
+			g.clearRect(0, 0, this.getWidth(), this.getHeight());
+			g.drawRect(0, 0, this.getWidth() - 1, this.getHeight() - 1);
 			for (MapObject obj : GameGUI.this.objects) {
 				obj.draw(g);
 			}
@@ -54,16 +53,15 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	public GameGUI(Controller controller, MenuGUI menuGUI) {
 		super();
 		this.menuGUI = menuGUI;
-		this.setLayout(new BorderLayout());
-		this.add(this.displayShots, BorderLayout.NORTH);
+		this.setLayout(new FlowLayout());
+		this.add(this.displayShots);
 		this.displayShots.add(this.shotsLabel);
 		this.displayShots.add(this.totalShotsLabel);
 		this.inputPanel = new InputPanel(controller);
-		this.inputPanel.setOpaque(false);
-		this.add(this.layeredPane, BorderLayout.CENTER);/*
-		this.layeredPane.add(this.inputPanel, JLayeredPane.DRAG_LAYER);*/
+		this.add(this.layeredPane);
+		this.layeredPane.add(this.inputPanel, JLayeredPane.DRAG_LAYER);
 		this.layeredPane.add(this.displayGame, JLayeredPane.DEFAULT_LAYER);
-		this.displayGame.setBorder(new LineBorder(BORDER_COLOR, BORDER_THICKNESS));
+		this.inputPanel.setOpaque(false);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {
@@ -89,23 +87,25 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	}
 
 	@Override
-	public void setSize(Dimension size) {
-		super.setSize(size);
-		this.layeredPane.setSize(size);
-		this.inputPanel.setSize(size);
-		this.displayGame.setSize(size);
-		this.layeredPane.setBounds(0, 
-				0, 
-				Double.valueOf(size.getWidth()).intValue(), 
-				Double.valueOf(size.getHeight()).intValue());
+	public void setSize(Dimension mapSize) {
+		Dimension containerSize = new Dimension(Double.valueOf(mapSize.getWidth()).intValue() + BORDER_THICKNESS,
+				Double.valueOf(mapSize.getHeight()).intValue() + BORDER_THICKNESS);
+		this.layeredPane.setPreferredSize(containerSize);
+		this.displayGame.setPreferredSize(mapSize);
+		this.inputPanel.setPreferredSize(containerSize);
 		this.inputPanel.setBounds(0, 
 				0, 
-				Double.valueOf(size.getWidth()).intValue(), 
-				Double.valueOf(size.getHeight()).intValue());
-		this.layeredPane.setBounds(0, 
+				Double.valueOf(containerSize.getWidth()).intValue(), 
+				Double.valueOf(containerSize.getHeight()).intValue());
+		this.displayGame.setBounds(0, 
 				0, 
-				Double.valueOf(size.getWidth()).intValue(), 
-				Double.valueOf(size.getHeight()).intValue());
+				Double.valueOf(mapSize.getWidth()).intValue(), 
+				Double.valueOf(mapSize.getHeight()).intValue());
+		this.pack();
+		System.out.println(this.getSize());
+		System.out.println(this.inputPanel.getSize());
+		System.out.println(this.displayGame.getSize());
+		System.out.println(this.layeredPane.getSize());
 	}
 
 	@Override

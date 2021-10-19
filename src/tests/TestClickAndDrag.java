@@ -1,5 +1,4 @@
 package tests;
-@SuppressWarnings("unused")
 import java.awt.Color;
 import java.awt.Point;
 
@@ -27,10 +26,14 @@ public class TestClickAndDrag {
 	}
 	*/
 	
-	/*
+	
 	public static void main(final String[] args) {
-		JFrame frame = new GameGUI();
+		Controller controller = new MapController(EMap.STARTING_GROUND, 1);
+		GameGUI frame = new GameGUI(controller, null);
+		controller.setInput(frame);
+		controller.setOutput(frame);
+		controller.start();
+		frame.setVisible(true);
 	}
-	*/
 	
 }

@@ -23,7 +23,7 @@ public abstract class MovingObject extends Thread implements MapObject {
 	
 	@Override
 	public synchronized Point getPosition() {
-		return position;
+		return this.position;
 	}
 	
 	@Override
@@ -44,19 +44,23 @@ public abstract class MovingObject extends Thread implements MapObject {
 		}
 	}
 	
+	public void disable() {
+		this.stop = true;
+	}
+	
 	protected abstract void updateSpeed(long timeElapsed);
 
 	protected abstract void applyConstraints();
 
-	public boolean isMoving() {
+	public synchronized boolean isMoving() {
 		return !speed.equals(Vector2D.nullVector());
 	}
 
-	public void setSpeed(Vector2D newSpeed) {
+	public synchronized void setSpeed(Vector2D newSpeed) {
 		this.speed = newSpeed;
 	}
 	
-	public Vector2D getSpeed() {
+	public synchronized Vector2D getSpeed() {
 		return this.speed;
 	}
 
