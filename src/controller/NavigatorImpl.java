@@ -21,8 +21,7 @@ import model.EMap;
 public class NavigatorImpl implements Navigator {
 	
 	public static final String SEP = File.separator;
-	public static final String FILE_NAME = System.getProperty("user.home") + SEP + "Desktop"
-			+ SEP + "workspace" + SEP + "Jolf" + SEP + "leaderboard.txt";
+	public static final String FILE_NAME = System.getProperty("user.dir") + SEP + "leaderboard.txt";
 
 	@Override
 	public Map<String,Integer> getLeaderboard() throws IOException {
