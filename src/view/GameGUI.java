@@ -1,8 +1,11 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -12,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import controller.Controller;
 import model.MapObject;
@@ -20,6 +24,9 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 	private final static String DEFAULT_TOTAL_SHOTS_LABEL = "Total Shots: ";
 	private final static String DEFAULT_SHOTS_LABEL = "Map Shots: ";
+	private final static String DEFAULT_NAME_LABEL = "Name: ";
+	private final static Color GRASS_COLOR = new Color(34, 111, 84);
+	private final static Color HOLE_COLOR = new Color(218, 44, 56);
 	private final static int BORDER_THICKNESS = 20;
 	/**
 	 * 
@@ -28,9 +35,10 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	private List<MapObject> objects;
 	private final MenuGUI menuGUI;
 	private final JLayeredPane layeredPane = new JLayeredPane();
-	private final JPanel displayShots = new JPanel();
+	private final JPanel displayShots = new JPanel(new GridLayout(1, 2));
 	private final JLabel totalShotsLabel = new JLabel(DEFAULT_TOTAL_SHOTS_LABEL);
 	private final JLabel shotsLabel = new JLabel(DEFAULT_SHOTS_LABEL);
+	private final JLabel nameLabel = new JLabel(DEFAULT_NAME_LABEL);
 	private final InputPanel inputPanel;
 	private final JPanel displayGame = new JPanel() {
 		/**
@@ -40,8 +48,8 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 		@Override
 		public void paint(Graphics g) {
-			g.clearRect(0, 0, this.getWidth(), this.getHeight());
-			g.drawRect(0, 0, this.getWidth() - 1, this.getHeight() - 1);
+			g.setColor(GRASS_COLOR);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			for (MapObject obj : GameGUI.this.objects) {
 				obj.draw(g);
 			}
@@ -53,15 +61,19 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	public GameGUI(Controller controller, MenuGUI menuGUI) {
 		super();
 		this.menuGUI = menuGUI;
-		this.setLayout(new FlowLayout());
-		this.add(this.displayShots);
+		this.inputPanel = new InputPanel(controller);
+		this.setLayout(new BorderLayout());
+		this.setResizable(false);
+		this.nameLabel.setBorder(new LineBorder(getBackground(), BORDER_THICKNESS));
+		this.displayShots.setBorder(new LineBorder(getBackground(), BORDER_THICKNESS));
 		this.displayShots.add(this.shotsLabel);
 		this.displayShots.add(this.totalShotsLabel);
-		this.inputPanel = new InputPanel(controller);
-		this.add(this.layeredPane);
 		this.layeredPane.add(this.inputPanel, JLayeredPane.DRAG_LAYER);
 		this.layeredPane.add(this.displayGame, JLayeredPane.DEFAULT_LAYER);
 		this.inputPanel.setOpaque(false);
+		this.add(this.nameLabel, BorderLayout.NORTH);
+		this.add(this.layeredPane, BorderLayout.CENTER);
+		this.add(this.displayShots, BorderLayout.SOUTH);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {

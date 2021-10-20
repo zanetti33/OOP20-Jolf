@@ -11,8 +11,6 @@ public interface Map {
 
 	void startMovingObjects();
 	
-	boolean ballsAreMoving();
-	
-	List<Ball> getBalls();
+	Ball getBall();
 	
 }

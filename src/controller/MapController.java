@@ -1,5 +1,6 @@
 package controller;
 
+import model.EMap;
 import model.Map;
 import model.Vector2D;
 import view.GameInput;
@@ -8,30 +9,29 @@ import view.GameOutput;
 public class MapController extends Thread implements Controller {
 
 	private final static long DELAY = 30;
+	private final static double FROM_PIXEL_TO_SPEED = 0.001;
 	
 	private GameOutput myOutput;
 	private GameInput myInput;
 	private final Map map;
-	private final int players;
 	
 	private boolean playing = false;
 	private int currentShots;
-	private int currentPlayer;
 	
-	public MapController(Map m, int players) {
+	public MapController(final Map m) {
 		this.map = m;
-		this.currentPlayer = 0;
-		this.players = players;
+	}
+	
+	public MapController(final String mapName) {
+		this(EMap.get(mapName));
 	}
 	
 	@Override
 	public void run() {
 		try {
 			while (playing) {
-				if (!this.map.ballsAreMoving()) {
-					this.myInput.enableShot(this.map.getBalls()
-							.get(this.currentPlayer)
-							.getPosition());
+				if (!this.map.getBall().isMoving()) {
+					this.myInput.enableShot(this.map.getBall().getPosition());
 				}
 				//e che se la palla è in buca allora si ferma la partita
 				myOutput.updateObjectsPosition(this.map.getObjects());
@@ -55,8 +55,7 @@ public class MapController extends Thread implements Controller {
 	
 	@Override
 	public void newShot(Vector2D shot) {
-		this.map.getBalls().get(this.currentPlayer).setSpeed(shot);
-		this.currentPlayer = (this.currentPlayer + 1) % this.players;
+		this.map.getBall().setSpeed(new Vector2D(shot.getX() * FROM_PIXEL_TO_SPEED, shot.getY() * FROM_PIXEL_TO_SPEED));
 		this.currentShots++;
 		this.myOutput.updateShotCount(this.currentShots);
 	}

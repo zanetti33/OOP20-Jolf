@@ -19,7 +19,6 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 	private GameOutput myOutput;
 	private GameInput myInput;
 	private final List<Map> maps;
-	private final int players;
 	private final String playerName;
 	private final Navigator navigator;
 	private MapController mapController;
@@ -30,12 +29,11 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 		this.totalShots = 0;
 		this.maps = course.getMaps();
 		this.mapIndex = 0;
-		this.players = 1;
 		this.playerName = playerName;
 		this.navigator = new NavigatorImpl();
 	}
 	
-	public GameController(String playerName, String course) {
+	public GameController(final String playerName, final String course) {
 		this(playerName, ECourse.get(course));
 	}
 
@@ -45,7 +43,7 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 	
 	private void nextMap() {
 		if (this.mapIndex < this.maps.size()) {
-			this.mapController = new MapController(this.maps.get(this.mapIndex), this.players);
+			this.mapController = new MapController(this.maps.get(this.mapIndex));
 			this.mapController.setOutput(this);
 			this.mapController.setInput(this);
 			this.mapController.start();
@@ -103,6 +101,7 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.myOutput.gameFinished();
 	}
 
 	@Override

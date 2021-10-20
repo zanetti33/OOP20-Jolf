@@ -7,24 +7,34 @@ import java.util.List;
 
 public enum EMap implements Map {
 
-	STARTING_GROUND("Starting Ground", new Dimension(720, 400), List.of(new Ball(new Point(0, 0))), List.of(), List.of()),
-	PIPPO("Pippo", new Dimension(720, 400), List.of(new Ball(new Point(50, 50))), List.of(), List.of());
+	STARTING_GROUND("Starting Ground", new Dimension(720, 400), new Ball(new Point(0, 0)), List.of(), List.of()),
+	PIPPO("Pippo", new Dimension(720, 400), new Ball(new Point(50, 50)), List.of(), List.of());
 	
 	private final String name;
 	private final Dimension size;
-	private final List<Ball> balls;
+	private final Ball ball;
 	private final List<MovingObject> movingObjects;
 	private final List<MapObject> objects;
 	
-	private EMap(String name, Dimension size, List<Ball> balls, List<MovingObject> otherMovingObjects, List<MapObject> otherObjects) {
+	private EMap(String name, Dimension size, Ball ball, List<MovingObject> otherMovingObjects, List<MapObject> otherObjects) {
 		this.name = name;
 		this.size = size;
-		this.balls = balls;
-		this.balls.stream().forEach(ball -> ball.setMap(this));
+		this.ball = ball;
+		this.ball.setMap(this);
 		this.movingObjects = new ArrayList<MovingObject>(otherMovingObjects);
-		this.movingObjects.addAll(balls);
+		this.movingObjects.add(ball);
 		this.objects = new ArrayList<MapObject>(otherObjects);
 		this.objects.addAll(movingObjects);
+	}
+	
+	public static EMap get(String mapName) {
+		EMap result = null;
+		for (EMap map : EMap.values()) {
+			if (map.getName().equals(mapName)) {
+				result = map;
+			}
+		}
+		return result;
 	}
 	
 	public String getName() {
@@ -47,13 +57,8 @@ public enum EMap implements Map {
 	}
 
 	@Override
-	public boolean ballsAreMoving() {
-		return this.balls.stream().anyMatch(Ball::isMoving);
-	}
-
-	@Override
-	public List<Ball> getBalls() {
-		return this.balls;
+	public Ball getBall() {
+		return this.ball;
 	}
 	
 }

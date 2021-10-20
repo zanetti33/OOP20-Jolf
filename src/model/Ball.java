@@ -9,7 +9,7 @@ public class Ball extends MovingObject {
 
 	private final static int RADIUS = 10;
 	private final static int HALF_R = RADIUS / 2;
-	private final static Color BALL_COLOR = Color.BLACK;
+	private final static Color BALL_COLOR = new Color(67, 41, 31);
 	private final static double DEFAULT_ACCELERATION = -0.1f;
 	
 	private Map map;
@@ -27,7 +27,7 @@ public class Ball extends MovingObject {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(BALL_COLOR);
-		g.drawOval(this.getPosition().x - HALF_R, 
+		g.fillOval(this.getPosition().x - HALF_R, 
 				this.getPosition().y - HALF_R, 
 				RADIUS, 
 				RADIUS);
@@ -40,9 +40,6 @@ public class Ball extends MovingObject {
 
 	@Override
 	protected synchronized void updateSpeed(long timeElapsed) {
-		double deltaV = this.getAcceleration() * Math.pow(timeElapsed, 2);
-		this.setSpeed(new Vector2D(this.getSpeed().getX() - deltaV,
-				this.getSpeed().getY() - deltaV));
 	}
 
 	private synchronized double getAcceleration() {
