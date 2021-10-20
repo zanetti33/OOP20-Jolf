@@ -3,6 +3,8 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controller.Controller;
+
 public class MyOptionPane extends JOptionPane {
 
 	/**
@@ -19,6 +21,14 @@ public class MyOptionPane extends JOptionPane {
 	public static void returnToMenu(JFrame thisGUI, MenuGUI menuGUI) {
 		if (showConfirmDialog(thisGUI, "Return to menu?", "Closing...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			thisGUI.dispose();
+			menuGUI.setVisible(true);
+		}
+	}
+	
+	public static void returnToMenu(JFrame thisGUI, MenuGUI menuGUI, Controller controller) {
+		if (showConfirmDialog(thisGUI, "Return to menu?", "Closing...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			thisGUI.dispose();
+			controller.forceStop();
 			menuGUI.setVisible(true);
 		}
 	}

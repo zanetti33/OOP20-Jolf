@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.List;
 
 import model.Course;
-import model.ECourse;
+import model.CourseImpl;
 import model.Map;
 import model.MapObject;
 import model.Vector2D;
 import view.GameInput;
 import view.GameOutput;
 
-public class GameController extends Thread implements Controller, GameInput, GameOutput {
+public class GameController implements Controller, GameInput, GameOutput {
 	
 	private GameOutput myOutput;
 	private GameInput myInput;
@@ -34,11 +34,16 @@ public class GameController extends Thread implements Controller, GameInput, Gam
 	}
 	
 	public GameController(final String playerName, final String course) {
-		this(playerName, ECourse.get(course));
+		this(playerName, CourseImpl.getCourse(course));
 	}
 
 	public void start() {
 		this.nextMap();
+	}
+	
+	@Override
+	public void forceStop() {
+		this.mapController.forceStop();
 	}
 	
 	private void nextMap() {

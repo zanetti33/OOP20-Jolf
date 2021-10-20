@@ -1,7 +1,6 @@
 package controller;
-
-import model.EMap;
 import model.Map;
+import model.MapImpl;
 import model.Vector2D;
 import view.GameInput;
 import view.GameOutput;
@@ -16,6 +15,7 @@ public class MapController extends Thread implements Controller {
 	private final Map map;
 	
 	private boolean playing = false;
+	private boolean forcedStop = false;
 	private int currentShots;
 	
 	public MapController(final Map m) {
@@ -23,13 +23,13 @@ public class MapController extends Thread implements Controller {
 	}
 	
 	public MapController(final String mapName) {
-		this(EMap.get(mapName));
+		this(MapImpl.getMap(mapName));
 	}
 	
 	@Override
 	public void run() {
 		try {
-			while (playing) {
+			while (playing && !forcedStop) {
 				if (!this.map.getBall().isMoving()) {
 					this.myInput.enableShot(this.map.getBall().getPosition());
 				}
@@ -40,7 +40,9 @@ public class MapController extends Thread implements Controller {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.myOutput.mapFinished();
+		if (!forcedStop) {
+			this.myOutput.mapFinished();
+		}
 	}
 	
 	@Override
@@ -51,6 +53,12 @@ public class MapController extends Thread implements Controller {
 		this.playing = true;
 		this.map.startMovingObjects();
 		super.start();
+	}
+	
+	@Override
+	public void forceStop() {
+		this.forcedStop = true;
+		this.map.getBall().forceStop();
 	}
 	
 	@Override

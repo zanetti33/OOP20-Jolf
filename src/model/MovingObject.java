@@ -44,7 +44,7 @@ public abstract class MovingObject extends Thread implements MapObject {
 		}
 	}
 	
-	public void disable() {
+	public void forceStop() {
 		this.stop = true;
 	}
 	

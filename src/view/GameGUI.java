@@ -77,7 +77,7 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {
-				MyOptionPane.returnToMenu(GameGUI.this, menuGUI);
+				MyOptionPane.returnToMenu(GameGUI.this, menuGUI, controller);
 			}
 		});
 	}
@@ -100,24 +100,18 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 	@Override
 	public void setSize(Dimension mapSize) {
-		Dimension containerSize = new Dimension(Double.valueOf(mapSize.getWidth()).intValue() + BORDER_THICKNESS,
-				Double.valueOf(mapSize.getHeight()).intValue() + BORDER_THICKNESS);
-		this.layeredPane.setPreferredSize(containerSize);
+		this.layeredPane.setPreferredSize(mapSize);
 		this.displayGame.setPreferredSize(mapSize);
-		this.inputPanel.setPreferredSize(containerSize);
+		this.inputPanel.setPreferredSize(mapSize);
 		this.inputPanel.setBounds(0, 
 				0, 
-				Double.valueOf(containerSize.getWidth()).intValue(), 
-				Double.valueOf(containerSize.getHeight()).intValue());
+				Double.valueOf(mapSize.getWidth()).intValue(), 
+				Double.valueOf(mapSize.getHeight()).intValue());
 		this.displayGame.setBounds(0, 
 				0, 
 				Double.valueOf(mapSize.getWidth()).intValue(), 
 				Double.valueOf(mapSize.getHeight()).intValue());
 		this.pack();
-		System.out.println(this.getSize());
-		System.out.println(this.inputPanel.getSize());
-		System.out.println(this.displayGame.getSize());
-		System.out.println(this.layeredPane.getSize());
 	}
 
 	@Override

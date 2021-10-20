@@ -13,5 +13,7 @@ public interface Controller {
 	void setOutput(GameOutput outputView);
 
 	void start();
+
+	void forceStop();
 	
 }
