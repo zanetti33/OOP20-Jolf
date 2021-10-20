@@ -20,7 +20,7 @@ public class LevelsGUI extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {
-				MyOptionPane.returnToMenu(LeaderboardGUI.this, menuGUI);
+				MyOptionPane.returnToMenu(LevelsGUI.this, menuGUI);
 			}
 		});
 	}
