@@ -1,39 +1,26 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Ice implements Surface {
+public class Ice extends Surface {
 	
 	private static final double ICE_FRICTION = 0.05;
-	private final Point position;
-	private final int width;
-	private final int height;
+	private static final Color ICE_COLOR = new Color(137, 210, 220);
 	
 	public Ice(final Point position, final int width, final int height) {
-		this.position = position;
-		this.width = width;
-		this.height = height;
-	}
-
-	@Override
-	public Point getPosition() {
-		return this.position;
+		super(position, width, height, ICE_FRICTION);
 	}
 
 	@Override
 	public void draw(final Graphics g) {
-		g.drawRect(this.position.x, this.position.y, this.width, this.height);
+		super.draw(g);
+		g.setColor(ICE_COLOR);
 	}
 
 	@Override
 	public void applyConstraintTo(final Ball ball) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public double getFriction() {
-		return ICE_FRICTION;
 	}
 
 }
