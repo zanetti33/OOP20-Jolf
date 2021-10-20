@@ -14,7 +14,7 @@ public abstract class Surface implements MapObject {
 		this.position = position;
 		this.width = width;
 		this.height = height;
-		this.friction = 0.1;
+		this.friction = friction;
 	}
 
 	@Override
