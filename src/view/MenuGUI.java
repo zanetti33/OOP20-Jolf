@@ -91,7 +91,7 @@ public class MenuGUI extends JFrame {
 					e1.printStackTrace();
 				}
 			} else if (e.getSource().equals(MenuGUI.this.levelsButton)) {
-				JFrame newGUI = new LevelsGUI(MenuGUI.this.navigator.getCourses(), MenuGUI.this);
+				JFrame newGUI = new LevelsGUI(MenuGUI.this.navigator.getMaps(), MenuGUI.this);
 				newGUI.setVisible(true);
 				MenuGUI.this.setVisible(false);
 			} else if (e.getSource().equals(MenuGUI.this.optionButton)) {
