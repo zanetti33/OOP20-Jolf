@@ -21,13 +21,14 @@ import model.EMap;
 public class NavigatorImpl implements Navigator {
 	
 	public static final String SEP = File.separator;
-	public static final String FILE_NAME = System.getProperty("user.dir") + SEP + "leaderboard.txt";
+	public static final String FILE_LEADERBOARD = System.getProperty("user.dir") + SEP + "leaderboard.txt";
+	public static final String FILE_STAR = System.getProperty("user.dir") + SEP + "star.png";
 
 	@Override
 	public Map<String,Integer> getLeaderboard() throws IOException {
 		Map<String,Integer> leaderboard = new HashMap<>();
 		
-		try (final BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))){
+		try (final BufferedReader reader = new BufferedReader(new FileReader(FILE_LEADERBOARD))){
 			Optional<String> s = Optional.ofNullable(reader.readLine());
 			while (s.isPresent()) {
 				String[] line = s.get().split("=");
@@ -51,13 +52,18 @@ public class NavigatorImpl implements Navigator {
 	
 	@Override
 	public void writeOnLeaderboard(String player, int score) throws IOException {
-		try (final BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+		try (final BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_LEADERBOARD, true))) {
 			String line = player + "=" + score;
 			writer.append(line);
 			writer.newLine();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public String getStarImage() {
+		return FILE_STAR;
 	}
 
 	@Override
