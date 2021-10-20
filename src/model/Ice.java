@@ -15,8 +15,8 @@ public class Ice extends Surface {
 
 	@Override
 	public void draw(final Graphics g) {
-		super.draw(g);
 		g.setColor(ICE_COLOR);
+		super.draw(g);
 	}
 
 	@Override

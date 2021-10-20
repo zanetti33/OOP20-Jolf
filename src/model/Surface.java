@@ -24,7 +24,7 @@ public abstract class Surface implements MapObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawRect(this.position.x, this.position.y, this.width, this.height);
+		g.fillRect(this.position.x, this.position.y, this.width, this.height);
 	}
 
 	@Override

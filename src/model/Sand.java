@@ -15,8 +15,8 @@ public class Sand extends Surface {
 
 	@Override
 	public void draw(final Graphics g) {
-		super.draw(g);
 		g.setColor(SAND_COLOR);
+		super.draw(g);
 	}
 
 	@Override
