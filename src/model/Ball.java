@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public class Ball extends MovingObject {
 
-	private final static int RADIUS = 10;
+	private final static int RADIUS = 12;
 	private final static int HALF_R = RADIUS / 2;
-	private final static Color BALL_COLOR = new Color(67, 41, 31);
+	private final static Color BALL_COLOR = new Color(0, 255, 255);
 	private final static double DEFAULT_ACCELERATION = -0.1f;
 	
 	private Map map;
