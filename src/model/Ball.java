@@ -3,21 +3,22 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.util.Optional;
 
 public class Ball extends MovingObject {
 
 	private final static int RADIUS = 10;
 	private final static int HALF_R = RADIUS / 2;
+	private final static double DEFAULT_ACCELERATION = 0.0000000000005f;
+	private final static double MINIMUM_SPEED = 0.5f;
 	private final static Color BALL_COLOR = new Color(67, 41, 31);
-	private final static double DEFAULT_ACCELERATION = -0.1f;
 	
 	private Map map;
-	private Optional<Double> acceleration = Optional.empty();
+	private Vector2D acceleration;
 	
 	public Ball(Point startingPos) {
 		super(startingPos);
 		this.map = null;
+		this.acceleration = new Vector2D(this.getSpeed().getAngle().inverse(), DEFAULT_ACCELERATION);
 	}
 
 	public void setMap(Map map) {
@@ -40,18 +41,23 @@ public class Ball extends MovingObject {
 
 	@Override
 	protected synchronized void updateSpeed(long timeElapsed) {
-	}
-
-	private synchronized double getAcceleration() {
-		return this.acceleration.orElse(DEFAULT_ACCELERATION);
+		if (this.getSpeed().getModule() <= MINIMUM_SPEED) {
+			this.setSpeed(Vector2D.nullVector());
+		} else {
+			this.setSpeed(this.getSpeed().sum(this.getAcceleration().multiply(timeElapsed)));
+		}
 	}
 	
-	public synchronized void setAcceleration(double acceleration) {
-		this.acceleration = Optional.of(acceleration);
+	public synchronized void setAcceleration(Vector2D newAcc) {
+		this.acceleration = newAcc;
+	}
+	
+	public synchronized Vector2D getAcceleration() {
+		return this.acceleration;
 	}
 	
 	public synchronized void resetAcceleration() {
-		this.acceleration = Optional.empty();
+		this.acceleration = new Vector2D(this.getSpeed().getAngle().inverse(), DEFAULT_ACCELERATION);
 	}
 
 	@Override

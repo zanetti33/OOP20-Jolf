@@ -25,6 +25,11 @@ public class Vector2D {
 		this.y = y1 - y2;
 	}
 	
+	public Vector2D(Angle angle, double module) {
+		this.x = Math.cos(angle.getRadians()) * module;
+		this.y = Math.sin(angle.getRadians()) * module;
+	}
+	
 	public double getX() {
 		return this.x;
 	}
@@ -50,9 +55,12 @@ public class Vector2D {
 				Double.valueOf(this.getY() + p.getY()).intValue());
 	}
 	
-	public void multiply(double a) {
-		this.x *= a;
-		this.y *= a;
+	public Vector2D sum(final Vector2D vector) {
+		return new Vector2D(this.x + vector.getX(), this.y + vector.getY());
+	}
+	
+	public Vector2D multiply(double a) {
+		return new Vector2D(this.x * a, this.y * a);
 	}
 	
 	@Override

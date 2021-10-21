@@ -63,7 +63,7 @@ public abstract class MovingObject extends Thread implements MapObject {
 	public synchronized Vector2D getSpeed() {
 		return this.speed;
 	}
-
+	
 	private synchronized void updatePosition(final long timeElapsed) {
 		this.position.setLocation(
 				this.position.getX() + this.speed.getX() * timeElapsed,
