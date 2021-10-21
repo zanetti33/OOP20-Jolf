@@ -8,14 +8,9 @@ public class Ball extends MovingObject {
 
 	private final static int RADIUS = 12;
 	private final static int HALF_R = RADIUS / 2;
-<<<<<<< HEAD
 	private final static double DEFAULT_ACCELERATION = 0.0000000000005f;
 	private final static double MINIMUM_SPEED = 0.5f;
-	private final static Color BALL_COLOR = new Color(67, 41, 31);
-=======
 	private final static Color BALL_COLOR = new Color(0, 255, 255);
-	private final static double DEFAULT_ACCELERATION = -0.1f;
->>>>>>> a55c7206029f743fdc29e0461e52f979fc9a6320
 	
 	private Map map;
 	private Vector2D acceleration;
