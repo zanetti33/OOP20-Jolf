@@ -34,7 +34,7 @@ public class MyOptionPane extends JOptionPane {
 	}
 	
 	public static void gameOver(JFrame thisGUI, MenuGUI menuGUI, int totalShots) {
-		JOptionPane.showMessageDialog(thisGUI, "Well done! You completed the course with " + totalShots + " shots!");
+		JOptionPane.showMessageDialog(thisGUI, "Well done! You made it with a total of " + totalShots + " shots!");
 		thisGUI.dispose();
 		menuGUI.setVisible(true);
 	}

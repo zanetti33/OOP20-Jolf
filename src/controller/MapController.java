@@ -41,7 +41,7 @@ public class MapController extends Thread implements Controller {
 			e.printStackTrace();
 		}
 		if (!forcedStop) {
-			this.myOutput.mapFinished();
+			this.myOutput.gameFinished(this.currentShots);
 		}
 	}
 	

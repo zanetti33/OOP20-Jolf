@@ -54,7 +54,12 @@ public class GameController implements Controller, GameInput, GameOutput {
 			this.mapController.start();
 			this.mapIndex++;
 		} else {
-			this.myOutput.gameFinished();
+			try {
+				this.navigator.writeOnLeaderboard(this.playerName, this.totalShots);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			this.myOutput.gameFinished(this.totalShots);
 		}
 	}
 	
@@ -86,11 +91,6 @@ public class GameController implements Controller, GameInput, GameOutput {
 	}
 
 	@Override
-	public void mapFinished() {
-		this.nextMap();
-	}
-
-	@Override
 	public void setSize(Dimension size) {
 		this.myOutput.setSize(size);
 	}
@@ -100,13 +100,8 @@ public class GameController implements Controller, GameInput, GameOutput {
 	}
 
 	@Override
-	public void gameFinished() {
-		try {
-			this.navigator.writeOnLeaderboard(this.playerName, this.totalShots);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.myOutput.gameFinished();
+	public void gameFinished(final int shots) {
+		this.nextMap();
 	}
 
 	@Override
