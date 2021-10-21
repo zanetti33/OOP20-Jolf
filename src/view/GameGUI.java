@@ -89,13 +89,8 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	}
 
 	@Override
-	public void updateShotCount(int shots) {
+	public void updateShotCount(final int shots) {
 		this.shotsLabel.setText(DEFAULT_SHOTS_LABEL + shots);
-	}
-
-	@Override
-	public void mapFinished() {
-		System.out.println("map finished");
 	}
 
 	@Override
@@ -121,8 +116,8 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	}
 
 	@Override
-	public void gameFinished() {
-		MyOptionPane.gameOver(this, this.menuGUI, this.totalShots);
+	public void gameFinished(int totalShots) {
+		MyOptionPane.gameOver(this, this.menuGUI, totalShots);
 	}
 
 	@Override
