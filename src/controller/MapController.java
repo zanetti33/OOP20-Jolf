@@ -35,7 +35,7 @@ public class MapController extends Thread implements Controller {
 					this.myInput.enableShot(this.map.getBall().getPosition());
 				}
 				//e che se la palla è in buca allora si ferma la partita
-				myOutput.updateObjectsPosition(this.map.getObjects());
+				myOutput.updateObjectsPosition(this.map.getObjects(), this.map.getStars());
 				Thread.sleep(DELAY);
 			}
 		} catch (Exception e) {
