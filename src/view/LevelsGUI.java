@@ -45,7 +45,7 @@ public class LevelsGUI extends JFrame {
 		this.mainPanel.setBorder(this.border);
 		this.mainPanel.add(this.titlePanel);
 		this.titlePanel.add(this.title);
-		this.mainPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+		this.mainPanel.setLayout(this.buttonLayout);
 		maps.forEach(map -> {
 			JButton button = new JButton("Map " + map);
 			button.addActionListener(e -> {
