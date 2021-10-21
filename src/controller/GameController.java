@@ -10,6 +10,7 @@ import model.Course;
 import model.CourseImpl;
 import model.Map;
 import model.MapObject;
+import model.Star;
 import model.Vector2D;
 import view.GameInput;
 import view.GameOutput;
@@ -80,8 +81,8 @@ public class GameController implements Controller, GameInput, GameOutput {
 	}
 
 	@Override
-	public void updateObjectsPosition(List<MapObject> objects) {
-		this.myOutput.updateObjectsPosition(objects);
+	public void updateObjectsPosition(List<MapObject> objects, List<Star> stars) {
+		this.myOutput.updateObjectsPosition(objects, stars);
 	}
 
 	@Override

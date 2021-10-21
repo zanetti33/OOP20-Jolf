@@ -1,8 +1,7 @@
 package model;
 public enum EMap {
 
-	STARTING_GROUND("Starting Ground"),
-	PIPPO("Pippo");
+	TEST("Test"), HOLE_1("Hole1"), HOLE_2("Hole2");
 
 	private final String name;
 	

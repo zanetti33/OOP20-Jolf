@@ -12,7 +12,7 @@ public class CourseImpl implements Course {
 	public static CourseImpl getCourse(ECourse course) {
 		switch(course) {
 			case MAIN_COURSE:
-				return new CourseImpl(List.of(MapImpl.getMap("Pippo")));
+				return new CourseImpl(List.of(MapImpl.getMap("Hole1"), MapImpl.getMap("Hole2")));
 			default:
 				return null;
 		}

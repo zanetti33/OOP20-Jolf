@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 
 import controller.Controller;
 import model.MapObject;
+import model.Star;
 
 public class GameGUI extends JFrame implements GameOutput, GameInput {
 
@@ -33,6 +34,8 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<MapObject> objects;
+	private List<Star> stars;
+	private int totalShots;
 	private final MenuGUI menuGUI;
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private final JPanel displayShots = new JPanel(new GridLayout(1, 2));
@@ -53,10 +56,11 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 			for (MapObject obj : GameGUI.this.objects) {
 				obj.draw(g);
 			}
+			for (Star star : GameGUI.this.stars) {
+				star.draw(g, GameGUI.this.displayGame);
+			}
 		}
 	};
-	
-	private int totalShots;
 	
 	public GameGUI(Controller controller, MenuGUI menuGUI) {
 		super();
@@ -83,8 +87,9 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	}
 	
 	@Override
-	public void updateObjectsPosition(final List<MapObject> objects) {
+	public void updateObjectsPosition(final List<MapObject> objects, final List<Star> stars) {
 		this.objects = objects;
+		this.stars = stars;
 		this.displayGame.repaint();
 	}
 

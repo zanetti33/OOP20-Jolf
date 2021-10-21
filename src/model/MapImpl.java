@@ -11,8 +11,9 @@ public class MapImpl implements Map {
 	private final Ball ball;
 	private final List<MovingObject> movingObjects;
 	private final List<MapObject> objects;
+	private final List<Star> stars;
 	
-	private MapImpl(Dimension size, Ball ball, List<MovingObject> otherMovingObjects, List<MapObject> otherObjects) {
+	private MapImpl(Dimension size, Ball ball, List<MovingObject> otherMovingObjects, List<MapObject> otherObjects, List<Star> stars) {
 		this.size = size;
 		this.ball = ball;
 		this.ball.setMap(this);
@@ -20,20 +21,32 @@ public class MapImpl implements Map {
 		this.movingObjects.add(ball);
 		this.objects = new ArrayList<MapObject>(otherObjects);
 		this.objects.addAll(movingObjects);
+		this.stars = new ArrayList<Star>(stars);
 	}
 	
 	public static MapImpl getMap(EMap map) {
 		switch(map) {
-			case PIPPO:
+			case TEST:
 				return new MapImpl(new Dimension(720, 400),
-						new Ball(new Point(50, 50)),
+						new Ball(new Point(100, 200)),
+						List.of(),
 						List.of(),
 						List.of());
-			case STARTING_GROUND:
+			case HOLE_1:
 				return new MapImpl(new Dimension(720, 400),
-						new Ball(new Point(50, 50)),
+						new Ball(new Point(90, 200)),
 						List.of(),
-						List.of());
+						List.of(new Wall(new Point2D(0, 100), 50, 200), new Wall(new Point2D(50, 100), 620, 40),
+								new Wall(new Point2D(50, 260), 620, 40), new Wall(new Point2D(670, 100), 50, 200)),
+						List.of(new Star(new Point2D(295, 185)), new Star(new Point2D(385, 185)), new Star(new Point2D(635, 185))));
+			case HOLE_2:
+				return new MapImpl(new Dimension(720, 400),
+						new Ball(new Point(50, 200)),
+						List.of(),
+						List.of(new Wall(new Point2D(130, 130), 300, 30), new Wall(new Point2D(130, 240), 300, 30),
+								new Ice(new Point2D(130, 0), 300, 130), new Ice(new Point2D(130, 270), 300, 130),
+								new Sand(new Point2D(130, 160), 300, 80)),
+						List.of(new Star(new Point2D(450, 185)), new Star(new Point2D(600, 50)), new Star(new Point2D(600, 300))));
 			default:
 				return null;
 		}
@@ -61,6 +74,11 @@ public class MapImpl implements Map {
 	@Override
 	public Ball getBall() {
 		return this.ball;
+	}
+
+	@Override
+	public List<Star> getStars() {
+		return this.stars;
 	}
 
 }
