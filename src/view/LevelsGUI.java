@@ -30,10 +30,10 @@ public class LevelsGUI extends JFrame {
 	private static final int BORDER_WIDTH = 70;
 	private static final int GRID_ROWS = 3;
 	
-	private final JPanel mainPanel = new JPanel();
 	private static final Dimension LEVELS_DIMENSION = new Dimension(600,800);
 	private final Border border = new LineBorder(this.getBackground(), BORDER_WIDTH);
 	private final GridLayout buttonLayout = new GridLayout(GRID_ROWS, 1);
+	private final JPanel mainPanel = new JPanel();
 	private final JPanel titlePanel = new JPanel();
 	private final JLabel title = new MyTitle("LEVELS");
 	
@@ -45,7 +45,7 @@ public class LevelsGUI extends JFrame {
 		this.mainPanel.setBorder(this.border);
 		this.mainPanel.add(this.titlePanel);
 		this.titlePanel.add(this.title);
-		this.mainPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+		this.mainPanel.setLayout(this.buttonLayout);
 		maps.forEach(map -> {
 			JButton button = new JButton("Map " + map);
 			button.addActionListener(e -> {

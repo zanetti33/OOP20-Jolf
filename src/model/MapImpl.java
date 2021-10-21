@@ -54,8 +54,8 @@ public class MapImpl implements Map {
 	}
 
 	@Override
-	public void startMovingObjects() {
-		this.movingObjects.stream().forEach(MovingObject::start);
+	public List<MovingObject> getMovingObjects() {
+		return this.movingObjects;
 	}
 
 	@Override

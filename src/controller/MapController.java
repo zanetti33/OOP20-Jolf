@@ -1,6 +1,7 @@
 package controller;
 import model.Map;
 import model.MapImpl;
+import model.MovingObject;
 import model.Vector2D;
 import view.GameInput;
 import view.GameOutput;
@@ -51,7 +52,7 @@ public class MapController extends Thread implements Controller {
 		this.myOutput.setSize(this.map.getSize());
 		this.myOutput.updateShotCount(this.currentShots);
 		this.playing = true;
-		this.map.startMovingObjects();
+		this.map.getMovingObjects().stream().forEach(MovingObject::start);
 		super.start();
 	}
 	
