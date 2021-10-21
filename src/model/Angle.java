@@ -37,7 +37,7 @@ public class Angle {
 	
 	@Override
 	public String toString() {
-		return "Angle [degrees=" + degrees + "°, radians=" + radians + " rads]";
+		return "Angle [degrees=" + degrees + ", radians=" + radians + " rads]";
 	}
 
 	@Override
