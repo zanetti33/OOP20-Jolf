@@ -10,6 +10,8 @@ public interface Navigator {
 	
 	void writeOnLeaderboard(String player, int score) throws IOException;
 	
+	String getStarImage();
+	
 	List<String> getMaps();
 	
 	List<String> getCourses();
