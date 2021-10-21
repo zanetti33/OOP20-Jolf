@@ -9,7 +9,7 @@ public interface Map {
 	
 	List<MapObject> getObjects();
 
-	void startMovingObjects();
+	List<MovingObject> getMovingObjects();
 	
 	Ball getBall();
 	
