@@ -11,6 +11,8 @@ public interface Map {
 
 	List<MovingObject> getMovingObjects();
 	
+	List<Star> getStars();
+	
 	Ball getBall();
 	
 }

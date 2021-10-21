@@ -1,10 +1,12 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
 public class Wall implements MapObject {
 	
+	private static final Color WALL_COLOR = new Color(87, 61, 28);
 	private final Point position;
 	private final int width;
 	private final int height;
@@ -22,7 +24,8 @@ public class Wall implements MapObject {
 
 	@Override
 	public void draw(final Graphics g) {
-		g.drawRect(this.position.x, this.position.y, this.width, this.height);
+		g.setColor(WALL_COLOR);
+		g.fillRect(this.position.x, this.position.y, this.width, this.height);
 	}
 
 	@Override
