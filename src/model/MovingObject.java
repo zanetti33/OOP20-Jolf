@@ -5,10 +5,12 @@ import java.awt.Point;
 
 public abstract class MovingObject extends Thread implements MapObject {
 
-	private final static long UPDATE_RATE = 20l;
+	private final static long UPDATE_RATE = 30l;
+	private final static double TO_SECONDS = 0.001;
+	
 	private boolean stop;
-	private Point position;
-	private Vector2D speed;
+	protected Point2D position;
+	protected Vector2D speed;
 	private long lastTimeUpdate;
 	
 	public MovingObject(Point startingPos) {
@@ -16,14 +18,18 @@ public abstract class MovingObject extends Thread implements MapObject {
 	}
 	
 	public MovingObject(Point startingPos, Vector2D startingSpeed) {
-		this.position = startingPos;
+		this.position = new Point2D(startingPos.getX(), startingPos.getY());
 		this.speed = startingSpeed;
 		this.stop = false;
 	}
 	
 	@Override
-	public synchronized Point getPosition() {
+	public synchronized Point2D getPosition() {
 		return this.position;
+	}
+	
+	public synchronized void setPosition(Point2D position) {
+		this.position = position;
 	}
 	
 	@Override
@@ -32,8 +38,9 @@ public abstract class MovingObject extends Thread implements MapObject {
 			this.lastTimeUpdate = System.currentTimeMillis();
 			while(!stop) {
 				long time = System.currentTimeMillis();
-				long timeElapsed = time - this.lastTimeUpdate;
+				long millsElapsed = time - this.lastTimeUpdate;
 				this.lastTimeUpdate = time;
+				double timeElapsed = Long.valueOf(millsElapsed).doubleValue() * TO_SECONDS;
 				updateSpeed(timeElapsed);
 				updatePosition(timeElapsed);
 				applyConstraints();
@@ -48,26 +55,20 @@ public abstract class MovingObject extends Thread implements MapObject {
 		this.stop = true;
 	}
 	
-	protected abstract void updateSpeed(long timeElapsed);
+	protected abstract void updateSpeed(double timeElapsed);
 
 	protected abstract void applyConstraints();
 
 	public synchronized boolean isMoving() {
 		return !speed.equals(Vector2D.nullVector());
 	}
-
-	public synchronized void setSpeed(Vector2D newSpeed) {
-		this.speed = newSpeed;
-	}
 	
 	public synchronized Vector2D getSpeed() {
 		return this.speed;
 	}
 	
-	private synchronized void updatePosition(final long timeElapsed) {
-		this.position.setLocation(
-				this.position.getX() + this.speed.getX() * timeElapsed,
-				this.position.getY() + this.speed.getY() * timeElapsed);
+	private synchronized void updatePosition(final double timeElapsed) {
+		this.position = this.speed.multiply(timeElapsed).traslate(this.getPosition());
 	}
 
 	@Override

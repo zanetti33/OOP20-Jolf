@@ -8,8 +8,7 @@ import view.GameOutput;
 
 public class MapController extends Thread implements Controller {
 
-	private final static long DELAY = 30;
-	private final static double FROM_PIXEL_TO_SPEED = 0.001;
+	private final static long DELAY = 30l;
 	
 	private GameOutput myOutput;
 	private GameInput myInput;
@@ -32,7 +31,7 @@ public class MapController extends Thread implements Controller {
 		try {
 			while (playing && !forcedStop) {
 				if (!this.map.getBall().isMoving()) {
-					this.myInput.enableShot(this.map.getBall().getPosition());
+					this.myInput.enableShot(this.map.getBall().getPosition().toPoint());
 				}
 				//e che se la palla è in buca allora si ferma la partita
 				myOutput.updateObjectsPosition(this.map.getObjects());
@@ -64,7 +63,7 @@ public class MapController extends Thread implements Controller {
 	
 	@Override
 	public void newShot(Vector2D shot) {
-		this.map.getBall().setSpeed(new Vector2D(shot.getX() * FROM_PIXEL_TO_SPEED, shot.getY() * FROM_PIXEL_TO_SPEED));
+		this.map.getBall().setSpeed(shot);
 		this.currentShots++;
 		this.myOutput.updateShotCount(this.currentShots);
 	}

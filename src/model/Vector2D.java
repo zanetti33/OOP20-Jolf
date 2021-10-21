@@ -21,8 +21,8 @@ public class Vector2D {
 	}
 	
 	public Vector2D(double x1, double y1, double x2, double y2) {
-		this.x = x1 - x2;
-		this.y = y1 - y2;
+		this.x = x2 - x1;
+		this.y = y2 - y1;
 	}
 	
 	public Vector2D(Angle angle, double module) {
@@ -43,16 +43,25 @@ public class Vector2D {
 	}
 	
 	public double getModule() {
-		return Math.sqrt(Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2));
+		return Math.sqrt(this.getSquareModule());
+	}
+	
+	public double getSquareModule() {
+		return this.getX() * this.getX() + this.getY() * this.getY();
 	}
 	
 	public Angle getAngle() {
-		return Angle.ofRadians(Math.acos(this.getX() / this.getModule()));
+		return Angle.ofRadians(Math.atan2(this.getY(), this.getX()));
 	}
 	
 	public Point traslate(Point p) {
 		return new Point(Double.valueOf(this.getX() + p.getX()).intValue(),
 				Double.valueOf(this.getY() + p.getY()).intValue());
+	}
+
+	public Point2D traslate(Point2D p) {
+		return new Point2D(this.getX() + p.getX(),
+				this.getY() + p.getY());
 	}
 	
 	public Vector2D sum(final Vector2D vector) {

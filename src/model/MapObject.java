@@ -1,11 +1,10 @@
 package model;
 
 import java.awt.Graphics;
-import java.awt.Point;
 
 public interface MapObject {
 	
-	Point getPosition();
+	Point2D getPosition();
 	
 	void draw(Graphics g);
 	

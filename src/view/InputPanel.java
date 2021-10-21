@@ -44,7 +44,7 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 
 	public void updateShotIntent(Vector2D direction) {
 		synchronized (this) {
-			this.direction = direction;
+			this.direction = direction.getOppositeVector();
 		}
 		repaint();
 	}
@@ -56,10 +56,12 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 	}
 	
 	public void shoot() {
-		this.myController.newShot(this.direction);
-		this.applicationPoint = null;
-		this.direction = null;
-		repaint();
+		if (!this.direction.equals(Vector2D.nullVector())) {
+			this.myController.newShot(this.direction);
+			this.applicationPoint = null;
+			this.direction = null;
+			repaint();
+		}
 	}
 	
 }
