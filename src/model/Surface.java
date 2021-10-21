@@ -1,16 +1,15 @@
 package model;
 
 import java.awt.Graphics;
-import java.awt.Point;
 
 public abstract class Surface implements MapObject {
 	
 	private final double friction;
-	private final Point position;
+	private final Point2D position;
 	private final int width;
 	private final int height;
 	
-	public Surface(final Point position, final int width, final int height, final double friction) {
+	public Surface(final Point2D position, final int width, final int height, final double friction) {
 		this.position = position;
 		this.width = width;
 		this.height = height;
@@ -18,13 +17,13 @@ public abstract class Surface implements MapObject {
 	}
 
 	@Override
-	public Point getPosition() {
+	public Point2D getPosition() {
 		return this.position;
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.fillRect(this.position.x, this.position.y, this.width, this.height);
+		g.fillRect(this.position.getIntX(), this.position.getIntY(), this.width, this.height);
 	}
 
 	@Override
