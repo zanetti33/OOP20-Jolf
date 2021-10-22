@@ -53,7 +53,7 @@ public class MapImpl implements Map {
 						new Ball(new Point(30, 200)),
 						List.of(),
 						List.of(new Wall(new Point2D(130, 130), 300, 30), new Wall(new Point2D(130, 240), 300, 30),
-								new Sand(new Point2D(130, 0), 300, 80)), new Sand(new Point2D(130, 160), 300, 80), new Sand(new Point2D(500, 40), 300, 80)),
+								new Sand(new Point2D(130, 0), 300, 80), new Sand(new Point2D(130, 160), 300, 80), new Sand(new Point2D(500, 40), 300, 80)),
 						List.of(new Star(new Point2D(45, 100)), new Star(new Point2D(120, 70)), new Star(new Point2D(300, 300))));
 			case HOLE_4:
 				return new MapImpl(new Dimension(720, 400),
@@ -68,7 +68,7 @@ public class MapImpl implements Map {
 						new Ball(new Point(10, 200)),
 						List.of(),
 						List.of(new Wall(new Point2D(130, 130), 300, 30), new Wall(new Point2D(130, 240), 300, 30),
-								new Ice(new Point2D(130, 0), 300, 130), new Ice(new Point2D(130, 270), 300, 130), new Ice(new Point2D(130, 350), 300, 130),
+								new Ice(new Point2D(130, 0), 300, 130), new Ice(new Point2D(130, 270), 300, 130), new Ice(new Point2D(130, 350), 300, 130)),
 						List.of(new Star(new Point2D(380, 600)), new Star(new Point2D(200, 100)), new Star(new Point2D(125, 350))));
 			default:
 				return null;
