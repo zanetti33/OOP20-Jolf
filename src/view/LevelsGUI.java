@@ -28,7 +28,7 @@ public class LevelsGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int BORDER_WIDTH = 70;
-	private static final int GRID_ROWS = 3;
+	private static final int GRID_ROWS = 7;
 	
 	private static final Dimension LEVELS_DIMENSION = new Dimension(600,800);
 	private final Border border = new LineBorder(this.getBackground(), BORDER_WIDTH);

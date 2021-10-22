@@ -1,7 +1,7 @@
 package model;
 public enum EMap {
 
-	TEST("Test"), HOLE_1("Hole1"), HOLE_2("Hole2");
+	TEST("Test"), HOLE_1("Hole1"), HOLE_2("Hole2"), HOLE_3("Hole3"), HOLE_4("Hole4"), HOLE_5("Hole5");
 
 	private final String name;
 	
