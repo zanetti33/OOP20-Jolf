@@ -33,6 +33,7 @@ public class StartingGUI extends JFrame {
 		this.panel.setLayout(new FlowLayout(FlowLayout.LEADING, BORDER_WIDTH, BORDER_WIDTH));
 		this.panel.add(this.title);
 		this.panel.add(this.nameTextField);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		courses.stream().forEach(course -> {
 			JButton button = new JButton(course);
 			this.panel.add(button);

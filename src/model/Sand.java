@@ -18,8 +18,4 @@ public class Sand extends Surface {
 		super.draw(g);
 	}
 
-	@Override
-	public void applyConstraintTo(final Ball ball) {
-	}
-
 }

@@ -38,11 +38,11 @@ public class ShotListener extends MouseAdapter implements ShotInput {
 			this.visualizer.shoot();
 			this.startingPoint = null;
 			this.currentPoint = null;
-			this.enable = false;
 		}
 	}
-	
-	public synchronized void enable() {
-		this.enable = true;
+
+	@Override
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 }

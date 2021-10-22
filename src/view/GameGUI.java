@@ -78,6 +78,7 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 		this.add(this.nameLabel, BorderLayout.NORTH);
 		this.add(this.layeredPane, BorderLayout.CENTER);
 		this.add(this.displayShots, BorderLayout.SOUTH);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {

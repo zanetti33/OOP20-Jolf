@@ -2,6 +2,6 @@ package view;
 
 public interface ShotInput {
 
-	public void enable();
+	public void setEnable(boolean enable);
 	
 }

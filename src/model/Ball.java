@@ -6,7 +6,8 @@ import java.awt.Point;
 
 public class Ball extends MovingObject {
 
-	private final static int RADIUS = 12;
+	public final static int RADIUS = 12;
+	
 	private final static int HALF_R = RADIUS / 2;
 	private final static double DEFAULT_ACCELERATION = 15f;
 	private final static Color BALL_COLOR = new Color(0, 255, 255);
@@ -28,6 +29,14 @@ public class Ball extends MovingObject {
 		this.acceleration = DEFAULT_ACCELERATION;
 	}
 	
+	public synchronized void setAcceleration(double newAcc) {
+		this.acceleration = newAcc;
+	}
+	
+	public synchronized double getAcceleration() {
+		return this.acceleration;
+	}
+	
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(BALL_COLOR);
@@ -37,28 +46,16 @@ public class Ball extends MovingObject {
 				RADIUS);
 	}
 
-	//to implement if there are 2 or more balls in the same map simultaneously
-	@Override
-	public void applyConstraintTo(Ball ball) {
-	}
-
 	@Override
 	protected synchronized void updateSpeed(double timeElapsed) {
-		if (this.getSpeed().getSquareModule() <= this.getAcceleration() * this.getAcceleration()) {
+		double deltaV = this.getAcceleration() * timeElapsed;
+		if (this.getSpeed().getSquareModule() <= deltaV * deltaV) {
 			this.speed = Vector2D.nullVector();
 			this.acceleration = 0f;
 		} else {
-			double deltaV = this.getAcceleration() * timeElapsed;
 			this.speed = new Vector2D(this.getSpeed().getAngle(), getSpeed().getModule() - deltaV);
+			this.acceleration = DEFAULT_ACCELERATION;
 		}
-	}
-	
-	public synchronized void setAcceleration(double newAcc) {
-		this.acceleration = newAcc;
-	}
-	
-	public synchronized double getAcceleration() {
-		return this.acceleration;
 	}
 
 	@Override
@@ -82,6 +79,11 @@ public class Ball extends MovingObject {
 			this.setPosition(new Point2D(RADIUS, this.getPosition().getY()));
 			this.speed = new Vector2D(- this.getSpeed().getX(), this.getSpeed().getY());
 		}
+	}
+
+	//to implement if there are 2 or more balls in the same map simultaneously
+	@Override
+	public void applyConstraintTo(Ball ball) {
 	}
 
 }
