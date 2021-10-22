@@ -2,6 +2,7 @@ package controller;
 import model.Map;
 import model.MapImpl;
 import model.MovingObject;
+import model.Star;
 import model.Vector2D;
 import view.GameInput;
 import view.GameOutput;
@@ -16,6 +17,7 @@ public class MapController extends Thread implements Controller {
 	
 	private boolean playing = false;
 	private boolean forcedStop = false;
+	private boolean holeCreated = false;
 	private int currentShots;
 	
 	public MapController(final Map m) {
@@ -33,7 +35,13 @@ public class MapController extends Thread implements Controller {
 				if (!this.map.getBall().isMoving()) {
 					this.myInput.enableShot(this.map.getBall().getPosition().toPoint());
 				}
-				//e che se la palla è in buca allora si ferma la partita
+				if (this.holeCreated && this.map.getStars().stream().anyMatch(Star::isGameOver)) {
+					this.playing = false;
+				}
+				if (!this.holeCreated && this.map.getStars().stream().filter(Star::isVisible).count() == 1) {
+					this.map.getStars().stream().filter(Star::isVisible).findFirst().ifPresent(Star::becomeHole);
+					this.holeCreated = true;
+				}
 				myOutput.updateObjectsPosition(this.map.getObjects(), this.map.getStars());
 				Thread.sleep(DELAY);
 			}

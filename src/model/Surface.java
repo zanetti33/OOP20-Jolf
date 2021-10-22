@@ -31,8 +31,9 @@ public abstract class Surface implements MapObject {
 
 	@Override
 	public void applyConstraintTo(Ball ball) {
-		if (this.hitbox.contains(ball.getPosition())) {
-			
+		if (this.hitbox.contains(ball.getPosition().getX(),
+				ball.getPosition().getY())) {
+			ball.setAcceleration(friction);
 		}
 	}
 	

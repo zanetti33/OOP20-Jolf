@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class Sand extends Surface {
 	
-	private static final double SAND_FRICTION = 0.7;
+	private static final double SAND_FRICTION = 50f;
 	private static final Color SAND_COLOR = new Color(241, 232, 184);
 	
 	public Sand(final Point2D position, final int width, final int height) {

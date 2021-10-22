@@ -16,17 +16,28 @@ public class Edge {
 		this(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 	}
 	
+	public Point2D getP1() {
+		return new Point2D(this.line.getP1().getX(),
+				this.line.getP1().getY());
+	}
+	
+	public Point2D getP2() {
+		return new Point2D(this.line.getP2().getX(),
+				this.line.getP2().getY());
+	}
+	
+	@Override
+	public String toString() {
+		return "Edge [p1=" + this.getP1() + ", p2=" + this.getP2() + "]";
+	}
+
 	public Angle getAngle() {
 		return this.angle;
 	}
-
-	public double getSqDistance(double x, double y) {
-		return this.line.ptLineDistSq(x, y);
-	}
 	
 	public boolean isHit(Ball ball) {
-		return Ball.RADIUS * Ball.RADIUS < 
-				this.getSqDistance(ball.getPosition().getX(), ball.getPosition().getY());
+		return Ball.RADIUS * Ball.RADIUS >=
+				this.line.ptSegDistSq(ball.getPosition().getX(), ball.getPosition().getY());
 	}
 	
 	public Angle resultAngle(Angle directionAngle) {

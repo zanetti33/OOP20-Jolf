@@ -19,9 +19,10 @@ public class MapImpl implements Map {
 		this.ball.setMap(this);
 		this.movingObjects = new ArrayList<MovingObject>(otherMovingObjects);
 		this.movingObjects.add(ball);
+		this.stars = new ArrayList<Star>(stars);
 		this.objects = new ArrayList<MapObject>(otherObjects);
 		this.objects.addAll(movingObjects);
-		this.stars = new ArrayList<Star>(stars);
+		this.objects.addAll(stars);
 	}
 	
 	public static MapImpl getMap(EMap map) {

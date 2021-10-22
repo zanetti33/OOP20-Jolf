@@ -3,12 +3,12 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.geom.Point2D;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -27,7 +27,6 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	private final static String DEFAULT_SHOTS_LABEL = "Map Shots: ";
 	private final static String DEFAULT_NAME_LABEL = "Name: ";
 	private final static Color GRASS_COLOR = new Color(34, 111, 84);
-	private final static Color HOLE_COLOR = new Color(218, 44, 56);
 	private final static int BORDER_THICKNESS = 20;
 	/**
 	 * 
@@ -50,9 +49,11 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 		private static final long serialVersionUID = 1L;
 
 		@Override
-		public void paint(Graphics g) {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
 			g.setColor(GRASS_COLOR);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			super.paintChildren(g);
 			for (MapObject obj : GameGUI.this.objects) {
 				obj.draw(g);
 			}
@@ -60,6 +61,7 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 				star.draw(g, GameGUI.this.displayGame);
 			}
 		}
+
 	};
 	
 	public GameGUI(Controller controller, MenuGUI menuGUI) {
