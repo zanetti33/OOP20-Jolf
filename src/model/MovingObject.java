@@ -5,8 +5,8 @@ import java.awt.Point;
 
 public abstract class MovingObject extends Thread implements MapObject {
 
-	private final static long UPDATE_RATE = 30l;
-	private final static double TO_SECONDS = 0.001;
+	public final static long UPDATE_RATE = 20l;
+	public final static double TO_SECONDS = 0.001;
 	
 	private boolean stop;
 	protected Point2D position;

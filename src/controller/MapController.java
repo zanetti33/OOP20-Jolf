@@ -10,6 +10,8 @@ import view.GameOutput;
 public class MapController extends Thread implements Controller {
 
 	private final static long DELAY = 30l;
+	private final static int MAX_SPEED = 150;
+	private final static int MAX_SQUARE_SPEED = MAX_SPEED * MAX_SPEED;
 	
 	private GameOutput myOutput;
 	private GameInput myInput;
@@ -70,8 +72,10 @@ public class MapController extends Thread implements Controller {
 	}
 	
 	@Override
-	public void newShot(Vector2D shot) {
-		this.map.getBall().setSpeed(shot);
+	public void newShot(Vector2D shot) { 
+		this.map.getBall().setSpeed(shot.getSquareModule() > MAX_SQUARE_SPEED ?
+				new Vector2D(shot.getAngle(), MAX_SPEED) : 
+				shot);
 		this.currentShots++;
 		this.myOutput.updateShotCount(this.currentShots);
 	}
