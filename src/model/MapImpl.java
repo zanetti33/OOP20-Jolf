@@ -32,14 +32,15 @@ public class MapImpl implements Map {
 						new Ball(new Point(100, 200)),
 						List.of(),
 						List.of(),
-						List.of());
+						List.of(new Star(new Point2D(300, 100)), new Star(new Point2D(500, 300)), new Star(new Point2D(680, 180))));
 			case HOLE_1:
 				return new MapImpl(new Dimension(720, 400),
 						new Ball(new Point(90, 200)),
 						List.of(),
 						List.of(new Wall(new Point2D(0, 100), 50, 200), new Wall(new Point2D(50, 100), 620, 40),
-								new Wall(new Point2D(50, 260), 620, 40), new Wall(new Point2D(670, 100), 50, 200)),
-						List.of(new Star(new Point2D(295, 185)), new Star(new Point2D(385, 185)), new Star(new Point2D(635, 185))));
+								new Wall(new Point2D(50, 260), 620, 40), new Wall(new Point2D(670, 100), 50, 200),
+								new Wall(new Point2D(300, 140), 30, 60), new Wall(new Point2D(500, 200), 30, 60)),
+						List.of(new Star(new Point2D(190, 185)), new Star(new Point2D(385, 185)), new Star(new Point2D(635, 185))));
 			case HOLE_2:
 				return new MapImpl(new Dimension(720, 400),
 						new Ball(new Point(50, 200)),
