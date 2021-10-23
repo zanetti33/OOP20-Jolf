@@ -37,9 +37,11 @@ public class OptionGUI extends JFrame {
 	private final JButton ballColourButton = new JButton("BALL COLOUR");
 	private final Navigator navigator = new NavigatorImpl();
 	private final ActionListener listener = new ButtonListener();
+	private final MenuGUI menuGUI;
 	
 	public OptionGUI(MenuGUI menuGUI) {
 		super();
+		this.menuGUI = menuGUI;
 		this.setSize(OPTIONS_DIMENSION);
 		this.buttonLayout.setVgap(10);
 		this.mainPanel.setLayout(this.buttonLayout);
@@ -68,6 +70,7 @@ public class OptionGUI extends JFrame {
 			if (e.getSource().equals(OptionGUI.this.resetButton)) {
 				try {
 					OptionGUI.this.navigator.resetLeaderboard();
+					MyOptionPane.resetLeaderboard(OptionGUI.this, OptionGUI.this.menuGUI);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
