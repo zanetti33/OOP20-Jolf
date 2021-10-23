@@ -22,7 +22,7 @@ public class GameController implements Controller, GameInput, GameOutput {
 	private final List<Map> maps;
 	private final String playerName;
 	private final Navigator navigator;
-	private MapController mapController;
+	private Controller mapController;
 	private int mapIndex;
 	private int totalShots;
 	
