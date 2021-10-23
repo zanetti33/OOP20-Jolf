@@ -34,8 +34,14 @@ public class MyOptionPane extends JOptionPane {
 		}
 	}
 	
+	public static void resetLeaderboard(JFrame thisGUI, MenuGUI menuGUI) {
+		JOptionPane.showMessageDialog(thisGUI, "Leaderboard has been reset successfully", "Leaderboard reset", JOptionPane.QUESTION_MESSAGE);
+		thisGUI.dispose();
+		menuGUI.setVisible(true);
+	}
+	
 	public static void gameOver(JFrame thisGUI, MenuGUI menuGUI, int totalShots) {
-		JOptionPane.showMessageDialog(thisGUI, "Well done! You made it with a total of " + totalShots + " shots!");
+		JOptionPane.showMessageDialog(thisGUI, "You made it with a total of " + totalShots + " shots!", "Well done!", JOptionPane.PLAIN_MESSAGE);
 		thisGUI.dispose();
 		menuGUI.setVisible(true);
 	}

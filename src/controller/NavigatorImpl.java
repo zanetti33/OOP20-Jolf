@@ -30,7 +30,7 @@ public class NavigatorImpl implements Navigator {
 		
 		try (final BufferedReader reader = new BufferedReader(new FileReader(FILE_LEADERBOARD))){
 			Optional<String> s = Optional.ofNullable(reader.readLine());
-			while (s.isPresent()) {
+			while (s.isEmpty()) {
 				String[] line = s.get().split("=");
 				String name = line[0];
 				int score = Integer.parseInt(line[1]);
@@ -55,6 +55,15 @@ public class NavigatorImpl implements Navigator {
 		try (final BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_LEADERBOARD, true))) {
 			String line = player + "=" + score;
 			writer.append(line);
+			writer.newLine();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void resetLeaderboard() throws IOException {
+		try (final BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_LEADERBOARD))) {
 			writer.newLine();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -92,7 +101,6 @@ public class NavigatorImpl implements Navigator {
         for (Entry<K, V> entry : list) {
             result.put(entry.getKey(), entry.getValue());
         }
-        System.out.println(result);
 		return result;
 	}
 
