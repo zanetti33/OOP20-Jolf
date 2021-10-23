@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import controller.Navigator;
+import controller.NavigatorImpl;
 
 public class OptionGUI extends JFrame {
 
@@ -33,6 +35,7 @@ public class OptionGUI extends JFrame {
 	private final JLabel title = new MyTitle("OPTIONS");
 	private final JButton resetButton = new JButton("RESET LEADERBOARD");
 	private final JButton ballColourButton = new JButton("BALL COLOUR");
+	private final Navigator navigator = new NavigatorImpl();
 	private final ActionListener listener = new ButtonListener();
 	
 	public OptionGUI(MenuGUI menuGUI) {
@@ -63,7 +66,11 @@ public class OptionGUI extends JFrame {
 		@Override
 		public void actionPerformed(final ActionEvent e) {
 			if (e.getSource().equals(OptionGUI.this.resetButton)) {
-				//to implement
+				try {
+					OptionGUI.this.navigator.resetLeaderboard();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			} else if (e.getSource().equals(OptionGUI.this.ballColourButton)) {
 				//to implement
 			}
