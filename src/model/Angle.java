@@ -8,14 +8,6 @@ public class Angle {
 	private double degrees;
 	private double radians;
 	
-	public double getRadians() {
-		return radians;
-	}
-
-	public double getDegrees() {
-		return degrees;
-	}
-	
 	public static Angle ofDegree(final double degrees) {
 		double newDegrees = degrees % DEGREES_FULL_LOOP;
 		return new Angle(newDegrees, Math.toRadians(newDegrees));
@@ -24,6 +16,18 @@ public class Angle {
 	public static Angle ofRadians(final double radians) {
 		double newRadians = radians % RADIANS_FULL_LOOP;
 		return new Angle(Math.toDegrees(newRadians), newRadians);
+	}
+	
+	public static Angle ofLine(double x1, double y1, double x2, double y2) {
+		return Angle.ofRadians(Math.atan2(y2 - y1, x2 - x1));
+	}
+	
+	public double getRadians() {
+		return radians;
+	}
+
+	public double getDegrees() {
+		return degrees;
 	}
 
 	private Angle(final double degrees, final double radians) {

@@ -19,7 +19,7 @@ public class ShotListener extends MouseAdapter implements ShotInput {
 	
 	@Override
 	public synchronized void mouseDragged(MouseEvent e) {
-		if (this.enable) {
+		if (this.enable && this.startingPoint != null) {
 			this.currentPoint = e.getPoint();
 			this.visualizer.updateShotIntent(new Vector2D(this.startingPoint, this.currentPoint));
 		}
@@ -38,11 +38,11 @@ public class ShotListener extends MouseAdapter implements ShotInput {
 			this.visualizer.shoot();
 			this.startingPoint = null;
 			this.currentPoint = null;
-			this.enable = false;
 		}
 	}
-	
-	public synchronized void enable() {
-		this.enable = true;
+
+	@Override
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 }

@@ -15,6 +15,8 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final Color INDICATOR_COLOR = Color.RED;
+	private static final double SQUARE_MINIMUM_SHOT_POWER = 100;
+	
 	private final Controller myController;
 	private final ShotListener mouseListener = new ShotListener(this);
 	
@@ -31,7 +33,7 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 	@Override
 	public void paintComponent(Graphics g) {
 		synchronized (this) {
-			if (this.applicationPoint != null && this.direction != null) {
+			if (this.applicationPoint != null && validShot()) {
 				Point directionTip = this.direction.traslate(this.applicationPoint);
 				g.setColor(INDICATOR_COLOR);
 				g.drawLine(Double.valueOf(this.applicationPoint.getX()).intValue(),
@@ -51,17 +53,25 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 
 	@Override
 	public void enableShot(Point ballPosition) {
-		this.mouseListener.enable();
+		this.mouseListener.setEnable(true);
 		this.applicationPoint = ballPosition;
 	}
 	
 	public void shoot() {
-		if (!this.direction.equals(Vector2D.nullVector())) {
+		if (validShot()) {
 			this.myController.newShot(this.direction);
-			this.applicationPoint = null;
-			this.direction = null;
-			repaint();
+			this.mouseListener.setEnable(false);
 		}
+		this.applicationPoint = null;
+		this.direction = null;
+		repaint();
+	}
+
+	private boolean validShot() {
+		if (this.direction == null) {
+			return false;
+		}
+		return this.direction.getSquareModule() > SQUARE_MINIMUM_SHOT_POWER; 
 	}
 	
 }
