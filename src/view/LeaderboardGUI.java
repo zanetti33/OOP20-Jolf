@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import util.MyOptionPane;
+import util.MyTitle;
+
 public class LeaderboardGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;

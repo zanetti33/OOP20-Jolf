@@ -1,7 +1,10 @@
 package model;
 
-import java.awt.Graphics;
 import java.awt.geom.Line2D;
+
+import util.Angle;
+import util.Point2D;
+import util.Vector2D;
 
 public class Edge {
 	
@@ -52,6 +55,11 @@ public class Edge {
 			ball.setPosition(ball.getSpeed().multiply(MovingObject.UPDATE_RATE * MovingObject.TO_SECONDS).traslate(ball.getPosition()));
 			System.out.println("COLPITO!");
 		}
+	}
+
+	public Edge traslate(Vector2D vector) {
+		return new Edge(vector.traslate(this.getP1()),
+				vector.traslate(this.getP2()));
 	}
 	
 }

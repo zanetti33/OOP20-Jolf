@@ -1,9 +1,10 @@
-package view;
+package util;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import controller.Controller;
+import view.MenuGUI;
 
 public class MyOptionPane extends JOptionPane {
 

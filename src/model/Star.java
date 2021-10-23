@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import controller.Navigator;
 import controller.NavigatorImpl;
+import util.Point2D;
 
 public class Star implements MapObject {
 	

@@ -1,7 +1,9 @@
 package model;
 
 import java.awt.Graphics;
-import java.awt.Point;
+
+import util.Point2D;
+import util.Vector2D;
 
 public abstract class MovingObject extends Thread implements MapObject {
 
@@ -9,16 +11,17 @@ public abstract class MovingObject extends Thread implements MapObject {
 	public final static double TO_SECONDS = 0.001;
 	
 	private boolean stop;
+	private long lastTimeUpdate;
 	protected Point2D position;
 	protected Vector2D speed;
-	private long lastTimeUpdate;
+	protected Map map;
 	
-	public MovingObject(Point startingPos) {
+	public MovingObject(Point2D startingPos) {
 		this(startingPos, Vector2D.nullVector());
 	}
 	
-	public MovingObject(Point startingPos, Vector2D startingSpeed) {
-		this.position = new Point2D(startingPos.getX(), startingPos.getY());
+	public MovingObject(Point2D startingPos, Vector2D startingSpeed) {
+		this.position = startingPos;
 		this.speed = startingSpeed;
 		this.stop = false;
 	}
@@ -31,6 +34,10 @@ public abstract class MovingObject extends Thread implements MapObject {
 	public synchronized void setPosition(Point2D position) {
 		this.position = position;
 	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
 	
 	@Override
 	public void run() {
@@ -41,9 +48,9 @@ public abstract class MovingObject extends Thread implements MapObject {
 				long millsElapsed = time - this.lastTimeUpdate;
 				this.lastTimeUpdate = time;
 				double timeElapsed = Long.valueOf(millsElapsed).doubleValue() * TO_SECONDS;
-				updateSpeed(timeElapsed);
-				updatePosition(timeElapsed);
-				applyConstraints();
+				this.updateSpeed(timeElapsed);
+				this.updatePosition(timeElapsed);
+				this.applyConstraints();
 				Thread.sleep(UPDATE_RATE);
 			}
 		} catch(Exception e) {
@@ -67,7 +74,7 @@ public abstract class MovingObject extends Thread implements MapObject {
 		return this.speed;
 	}
 	
-	private synchronized void updatePosition(final double timeElapsed) {
+	protected synchronized void updatePosition(final double timeElapsed) {
 		this.position = this.speed.multiply(timeElapsed).traslate(this.getPosition());
 	}
 

@@ -17,6 +17,8 @@ import javax.swing.border.LineBorder;
 
 import controller.Navigator;
 import controller.NavigatorImpl;
+import util.MyOptionPane;
+import util.MyTitle;
 
 public class MenuGUI extends JFrame {
 	/**

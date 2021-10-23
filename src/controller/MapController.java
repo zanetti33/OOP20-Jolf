@@ -3,7 +3,7 @@ import model.Map;
 import model.MapImpl;
 import model.MovingObject;
 import model.Star;
-import model.Vector2D;
+import util.Vector2D;
 import view.GameInput;
 import view.GameOutput;
 
@@ -68,7 +68,7 @@ public class MapController extends Thread implements Controller {
 	@Override
 	public void forceStop() {
 		this.forcedStop = true;
-		this.map.getBall().forceStop();
+		this.map.getMovingObjects().forEach(MovingObject::forceStop);
 	}
 	
 	@Override

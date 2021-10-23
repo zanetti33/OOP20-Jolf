@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 
 import controller.Controller;
 import controller.GameController;
+import util.MyOptionPane;
+import util.MyTitle;
 
 
 public class StartingGUI extends JFrame {

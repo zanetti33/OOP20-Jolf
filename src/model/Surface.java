@@ -3,6 +3,8 @@ package model;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
+import util.Point2D;
+
 public abstract class Surface implements MapObject {
 	
 	private final double friction;

@@ -20,6 +20,8 @@ import javax.swing.border.LineBorder;
 
 import controller.Controller;
 import controller.MapController;
+import util.MyOptionPane;
+import util.MyTitle;
 
 public class LevelsGUI extends JFrame {
 

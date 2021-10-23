@@ -2,6 +2,8 @@ package model;
 
 import java.awt.Graphics;
 
+import util.Point2D;
+
 public interface MapObject {
 	
 	Point2D getPosition();

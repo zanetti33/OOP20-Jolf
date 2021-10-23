@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Set;
 
+import util.Point2D;
+import util.Vector2D;
+
 public class Cone implements MapObject {
 	
 	private final Point2D point1;

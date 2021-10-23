@@ -1,6 +1,6 @@
 package controller;
 
-import model.Vector2D;
+import util.Vector2D;
 import view.GameInput;
 import view.GameOutput;
 

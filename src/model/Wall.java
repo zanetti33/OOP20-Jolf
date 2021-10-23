@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Set;
 
+import util.Point2D;
+
 public class Wall implements MapObject {
 	
 	private final Point2D position;
