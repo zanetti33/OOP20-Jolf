@@ -61,6 +61,7 @@ public class MenuGUI extends JFrame {
 		this.mainPanel.add(this.quitButton);
 		//to implement
 		this.multiplayerButton.setEnabled(false);
+		this.multiplayerButton.setToolTipText("Coming soon!");
 		this.multiplayerButton.addActionListener(this.listener);
 		this.playButton.addActionListener(this.listener);
 		this.leaderboardButton.addActionListener(this.listener);

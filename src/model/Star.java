@@ -45,7 +45,8 @@ public class Star implements MapObject {
 	
 	@Override
 	public String toString() {
-		return "Star [isHole=" + isHole + ", isVisible=" + isVisible + ", isGameOver=" + isGameOver + ", hitbox: " + this.hitbox.getBounds().getCenterX() + ", " + this.hitbox.getBounds().getCenterY() + "]";
+		return "Star [isHole=" + isHole + ", isVisible=" + isVisible + ", isGameOver=" + isGameOver +
+				", hitbox: " + this.hitbox.getBounds().getCenterX() + ", " + this.hitbox.getBounds().getCenterY() + "]";
 	}
 
 	@Override

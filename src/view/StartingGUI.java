@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
@@ -25,12 +26,13 @@ public class StartingGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int BORDER_WIDTH = 30;
+	private static final Dimension TEXTFIELD_DIMENSION = new Dimension(200,20);
 	
 	private final JPanel namePanel = new JPanel();
 	private final JPanel titlePanel = new JPanel();
 	private final JLabel title = new MyTitle("JOLF");
 	private final JLabel insertName = new JLabel("Insert name here: ");
-	private final JTextField nameTextField = new JTextField("Insert name here");
+	private final JTextField nameTextField = new JTextField();
 	
 	public StartingGUI(List<String> courses, MenuGUI menuGUI) {
 		super();
@@ -41,19 +43,24 @@ public class StartingGUI extends JFrame {
 		this.namePanel.setLayout(new FlowLayout(FlowLayout.LEADING, BORDER_WIDTH, BORDER_WIDTH));
 		this.namePanel.add(this.insertName);
 		this.namePanel.add(this.nameTextField);
+		this.nameTextField.setPreferredSize(TEXTFIELD_DIMENSION);
 		this.add(namePanel);
 		courses.stream().forEach(course -> {
 			JButton button = new JButton("Course " + course);
 			this.add(button);
 			button.addActionListener(e -> {
 				String playerName = this.nameTextField.getText();
-				Controller controller = new GameController(playerName, course);
-				GameGUI gameGUI = new GameGUI(controller, menuGUI);
-				controller.setInput(gameGUI);
-				controller.setOutput(gameGUI);
-				gameGUI.setVisible(true);
-				controller.start();
-				this.dispose();
+				if (playerName.contains("=") || playerName.isBlank()) {
+					MyOptionPane.incorrectPlayerName(this);
+				} else {
+					Controller controller = new GameController(playerName, course);
+					GameGUI gameGUI = new GameGUI(controller, menuGUI);
+					controller.setInput(gameGUI);
+					controller.setOutput(gameGUI);
+					gameGUI.setVisible(true);
+					controller.start();
+					this.dispose();
+				}
 			});
 		});		
 		this.pack();
