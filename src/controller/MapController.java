@@ -90,4 +90,9 @@ public class MapController extends Thread implements Controller {
 		this.myOutput = outputView;
 	}
 
+	@Override
+	public String getPlayerName() {
+		return "";
+	}
+
 }

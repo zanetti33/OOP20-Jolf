@@ -22,7 +22,6 @@ public class MovingEdge extends MovingObject implements MapObject {
 		Vector2D deltaX = this.speed.multiply(timeElapsed);
 		this.position = deltaX.traslate(this.getPosition());
 		this.edge = edge.traslate(deltaX);
-		System.out.println(this.edge);
 	}
 	
 	@Override

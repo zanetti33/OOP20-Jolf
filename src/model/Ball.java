@@ -23,7 +23,6 @@ public class Ball extends MovingObject {
 
 	public synchronized void setSpeed(Vector2D newSpeed) {
 		this.speed = newSpeed;
-		System.out.println(newSpeed);
 		this.acceleration = DEFAULT_ACCELERATION;
 	}
 	

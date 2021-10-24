@@ -53,7 +53,6 @@ public class Edge {
 			ball.setSpeed(new Vector2D(this.resultAngle(ball.getSpeed().getAngle()),
 					ball.getSpeed().getModule()));
 			ball.setPosition(ball.getSpeed().multiply(MovingObject.UPDATE_RATE * MovingObject.TO_SECONDS).traslate(ball.getPosition()));
-			System.out.println("COLPITO!");
 		}
 	}
 

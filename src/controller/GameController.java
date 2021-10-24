@@ -42,6 +42,10 @@ public class GameController implements Controller, GameInput, GameOutput {
 		this.nextMap();
 	}
 	
+	public String getPlayerName() {
+		return "Name: " + this.playerName;
+	}
+	
 	@Override
 	public void forceStop() {
 		this.mapController.forceStop();
