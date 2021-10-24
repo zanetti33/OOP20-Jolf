@@ -1,7 +1,8 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Map;
@@ -10,7 +11,6 @@ import java.util.Map.Entry;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 
 import util.MyOptionPane;
 import util.MyTitle;
@@ -19,36 +19,35 @@ public class LeaderboardGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private static final int MAX_PLAYERS_ON_LEADERBOARD = 10;
-	private static final Dimension LEADERBOARD_DIMENSION = new Dimension(600,800);
+	private static final Dimension LEADERBOARD_DIMENSION = new Dimension(600, 800);
+	private static final Dimension TITLE_DIMENSION = new Dimension(600, 70);
+	private static final Dimension POSITION_DIMENSION = new Dimension(80, 50);
+	private static final Dimension PLAYER_DIMENSION = new Dimension(350, 50);
+	private static final Dimension SCORE_DIMENSION = new Dimension(80, 50);
 	
 	private final JPanel mainPanel = new JPanel();
 	private final JPanel titlePanel = new JPanel();
-	private final JPanel headerPanel = new JPanel();
 	private final JLabel positionHeader = new JLabel("Position");
 	private final JLabel playerHeader = new JLabel("Player");
 	private final JLabel scoreHeader = new JLabel("Score");
 	private final JLabel title = new MyTitle("LEADERBOARD");
 
 	public LeaderboardGUI(Map<String,Integer> leaderboard, MenuGUI menuGUI) {
-		/*
-		 * TODO: Make this GUI decent, cute, well-designed... now it's orrible 
-		 * (but it works well!)
-		 */
 		super();
 		this.setSize(LEADERBOARD_DIMENSION);
-		this.setLayout(new BorderLayout());
-		this.titlePanel.setLayout(new BorderLayout());
+		this.setLayout(new FlowLayout());
+		this.titlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.titlePanel.add(this.title);
-		this.add(this.titlePanel, BorderLayout.NORTH);
-		this.headerPanel.setLayout(new BorderLayout());
-		this.headerPanel.add(this.positionHeader, BorderLayout.WEST);
-		this.headerPanel.add(this.playerHeader, BorderLayout.CENTER);
-		this.headerPanel.add(this.scoreHeader, BorderLayout.EAST);
-		this.add(this.headerPanel, BorderLayout.CENTER);
-		this.mainPanel.setLayout(new BorderLayout());
+		this.titlePanel.setPreferredSize(TITLE_DIMENSION);
+		this.add(this.titlePanel);
+		this.positionHeader.setPreferredSize(POSITION_DIMENSION);
+		this.playerHeader.setPreferredSize(PLAYER_DIMENSION);
+		this.scoreHeader.setPreferredSize(SCORE_DIMENSION);
+		this.mainPanel.setLayout(new FlowLayout());
 		this.mainPanel.add(this.leaderboardPanel(leaderboard));
-		this.add(this.mainPanel, BorderLayout.SOUTH);
+		this.add(this.mainPanel);
 		this.setVisible(true);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -59,27 +58,36 @@ public class LeaderboardGUI extends JFrame {
 	}
 	
 	private JPanel leaderboardPanel(Map<String,Integer> leaderboard) {
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		int position = 0;
-		String[][] tableData = new String[MAX_PLAYERS_ON_LEADERBOARD][3];
+		JPanel leaderboardPanel = new JPanel();
+		leaderboardPanel.setLayout(new GridLayout(MAX_PLAYERS_ON_LEADERBOARD + 1, 1));
+		int position = 1;
+		
+		JPanel headerPanel = new JPanel();
+		headerPanel.setLayout(new FlowLayout());
+		headerPanel.add(this.positionHeader);
+		headerPanel.add(this.playerHeader);
+		headerPanel.add(this.scoreHeader);
+		leaderboardPanel.add(headerPanel);
 		
 		for (Entry<String, Integer> e : leaderboard.entrySet()) {
 			System.out.println(e);
-			final String playerPosition = Integer.toString(position + 1);
-			final String playerName = e.getKey();
-			final String playerScore = Integer.toString(e.getValue());
-			tableData[position][0] = playerPosition;
-			tableData[position][1] = playerName;
-			tableData[position][2] = playerScore;
-			position++;
+			JPanel internPanel = new JPanel();
+			JLabel playerPosition = new JLabel(Integer.toString(position++));
+			JLabel playerName = new JLabel(e.getKey());
+			JLabel playerScore = new JLabel(Integer.toString(e.getValue()));
+			internPanel.setLayout(new FlowLayout());
+			playerPosition.setPreferredSize(POSITION_DIMENSION);
+			playerName.setPreferredSize(PLAYER_DIMENSION);
+			playerScore.setPreferredSize(SCORE_DIMENSION);
+			internPanel.add(playerPosition);
+			internPanel.add(playerName);
+			internPanel.add(playerScore);
+			leaderboardPanel.add(internPanel);
+			if (position > MAX_PLAYERS_ON_LEADERBOARD) {
+				return leaderboardPanel;
+			}
 		}
-		
-		String[] tableCol = new String[] {"Position", "Player Name", "Score"};
-		final JTable table = new JTable(tableData, tableCol);
-		
-		panel.add(table);
-		return panel;
+		return leaderboardPanel;
 	}
 
 }
