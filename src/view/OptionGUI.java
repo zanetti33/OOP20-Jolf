@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,8 +38,8 @@ public class OptionGUI extends JFrame {
 	private final JPanel titlePanel = new JPanel();
 	private final JLabel title = new MyTitle("OPTIONS");
 	private final JButton resetButton = new JButton("RESET LEADERBOARD");
-	private final JButton ballColourButton = new JButton("BALL COLOUR");
-	private final Navigator navigator = new NavigatorImpl();
+	private final JButton ballColorButton = new JButton("CHANGE BALL COLOR");
+	private final NavigatorImpl navigator = new NavigatorImpl();
 	private final ActionListener listener = new ButtonListener();
 	private final MenuGUI menuGUI;
 	
@@ -52,12 +54,12 @@ public class OptionGUI extends JFrame {
 		this.titlePanel.add(this.title);
 		this.mainPanel.setLayout(this.buttonLayout);
 		this.mainPanel.add(this.resetButton);
-		this.mainPanel.add(this.ballColourButton);
+		this.mainPanel.add(this.ballColorButton);
 		this.add(this.mainPanel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.resetButton.addActionListener(this.listener);
-		this.ballColourButton.addActionListener(this.listener);
+		this.ballColorButton.addActionListener(this.listener);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {
@@ -76,8 +78,28 @@ public class OptionGUI extends JFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-			} else if (e.getSource().equals(OptionGUI.this.ballColourButton)) {
-				//to implement
+			} else if (e.getSource().equals(OptionGUI.this.ballColorButton)) {
+				JFrame changeColor = new JFrame();
+				JLabel selectColor = new JLabel("Select a color: ");
+				String colorOptions[] = OptionGUI.this.navigator.getBallColors();
+				JComboBox<String> pickColor = new JComboBox<>(colorOptions);
+				JButton selectButton = new JButton("Select");
+				changeColor.setLayout(new FlowLayout());
+				changeColor.add(selectColor);
+				changeColor.add(pickColor);
+				changeColor.add(selectButton);
+				selectButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String newColor = (String)pickColor.getSelectedItem();
+						OptionGUI.this.navigator.changeBallColor(newColor);
+						MyOptionPane.changeBallColor(OptionGUI.this, OptionGUI.this.menuGUI);
+						changeColor.dispose();
+					}
+				});
+				changeColor.pack();
+				changeColor.setVisible(true);
+				
 			}
 		}
 	}

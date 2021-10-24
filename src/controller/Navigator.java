@@ -12,6 +12,8 @@ public interface Navigator {
 	
 	void resetLeaderboard() throws IOException;
 	
+	void changeBallColor(String color);
+	
 	String getStarImage();
 	
 	List<String> getMaps();
