@@ -10,11 +10,11 @@ public interface GameOutput {
 	
 	void updateTotalShotsCount(int totalShots);
 	
+	void updateShotCount(int shots);
+	
 	void gameFinished(int totalShots);
 
 	void updateObjectsPosition(List<MapObject> objects, List<Star> stars);
-	
-	void updateShotCount(int shots);
 
 	void setSize(Dimension size);
 

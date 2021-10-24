@@ -1,4 +1,6 @@
 package controller;
+import java.util.Optional;
+
 import model.Map;
 import model.MapImpl;
 import model.MovingObject;
@@ -91,8 +93,13 @@ public class MapController extends Thread implements Controller {
 	}
 
 	@Override
-	public String getPlayerName() {
-		return "";
+	public Optional<String> getPlayerName() {
+		return Optional.empty();
+	}
+
+	@Override
+	public String getMapName() {
+		return this.map.getName();
 	}
 
 }

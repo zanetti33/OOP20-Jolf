@@ -3,18 +3,11 @@ import java.awt.Color;
 import java.awt.Point;
 
 import javax.swing.JFrame;
-
-import controller.Controller;
-import controller.MapController;
-import model.EMap;
-import util.Vector2D;
-import view.GameGUI;
-import view.GameInput;
-import view.GameOutput;
 import view.InputPanel;
 
+@SuppressWarnings("unused")
 public class TestClickAndDrag {
-	/* 
+	/*
 	public static void main(final String[] args) {
 		JFrame frame = new JFrame();
 		InputPanel panel = new InputPanel(null);
@@ -25,6 +18,5 @@ public class TestClickAndDrag {
 		frame.setVisible(true);
 	}
 	*/
-	
 	
 }

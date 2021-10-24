@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import model.Course;
 import model.CourseImpl;
@@ -42,8 +43,8 @@ public class GameController implements Controller, GameInput, GameOutput {
 		this.nextMap();
 	}
 	
-	public String getPlayerName() {
-		return "Name: " + this.playerName;
+	public Optional<String> getPlayerName() {
+		return Optional.of(this.playerName);
 	}
 	
 	@Override
@@ -112,6 +113,11 @@ public class GameController implements Controller, GameInput, GameOutput {
 	@Override
 	public void enableShot(Point ballPosition) {
 		this.myInput.enableShot(ballPosition);
+	}
+
+	@Override
+	public String getMapName() {
+		return this.mapController.getMapName();
 	}
 
 }
