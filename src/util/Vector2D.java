@@ -1,4 +1,4 @@
-package model;
+package util;
 
 import java.awt.Point;
 
@@ -17,6 +17,10 @@ public class Vector2D {
 	}
 	
 	public Vector2D(Point p1, Point p2) {
+		this(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+	}
+	
+	public Vector2D(Point2D p1, Point2D p2) {
 		this(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 	}
 	

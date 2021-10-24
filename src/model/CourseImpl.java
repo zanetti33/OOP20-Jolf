@@ -11,8 +11,12 @@ public class CourseImpl implements Course {
 	
 	public static CourseImpl getCourse(ECourse course) {
 		switch(course) {
-			case MAIN_COURSE:
-				return new CourseImpl(List.of(MapImpl.getMap("Hole1"), MapImpl.getMap("Hole2")));
+			case COURSE_1:
+				return new CourseImpl(List.of(MapImpl.getMap("Hole1"), MapImpl.getMap("Hole2"), MapImpl.getMap("Hole3")));
+			case COURSE_2:
+				return new CourseImpl(List.of(MapImpl.getMap("Hole4"), MapImpl.getMap("Hole5"), MapImpl.getMap("Hole6")));
+			case COURSE_3:
+				return new CourseImpl(List.of(MapImpl.getMap("Hole7"), MapImpl.getMap("Hole8"), MapImpl.getMap("Hole9")));
 			default:
 				return null;
 		}

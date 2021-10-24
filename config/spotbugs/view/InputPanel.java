@@ -6,7 +6,7 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 import controller.Controller;
-import model.Vector2D;
+import util.Vector2D;
 
 public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 

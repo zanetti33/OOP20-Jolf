@@ -11,7 +11,7 @@ import model.CourseImpl;
 import model.Map;
 import model.MapObject;
 import model.Star;
-import model.Vector2D;
+import util.Vector2D;
 import view.GameInput;
 import view.GameOutput;
 
@@ -22,7 +22,7 @@ public class GameController implements Controller, GameInput, GameOutput {
 	private final List<Map> maps;
 	private final String playerName;
 	private final Navigator navigator;
-	private MapController mapController;
+	private Controller mapController;
 	private int mapIndex;
 	private int totalShots;
 	

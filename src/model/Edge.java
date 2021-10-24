@@ -2,6 +2,10 @@ package model;
 
 import java.awt.geom.Line2D;
 
+import util.Angle;
+import util.Point2D;
+import util.Vector2D;
+
 public class Edge {
 	
 	private Line2D line;
@@ -42,6 +46,20 @@ public class Edge {
 	
 	public Angle resultAngle(Angle directionAngle) {
 		return Angle.ofRadians(this.angle.getRadians() * 2 - directionAngle.getRadians());
+	}
+	
+	public void applyConstraintTo(final Ball ball) {
+		if (this.isHit(ball)) {
+			ball.setSpeed(new Vector2D(this.resultAngle(ball.getSpeed().getAngle()),
+					ball.getSpeed().getModule()));
+			ball.setPosition(ball.getSpeed().multiply(MovingObject.UPDATE_RATE * MovingObject.TO_SECONDS).traslate(ball.getPosition()));
+			System.out.println("COLPITO!");
+		}
+	}
+
+	public Edge traslate(Vector2D vector) {
+		return new Edge(vector.traslate(this.getP1()),
+				vector.traslate(this.getP2()));
 	}
 	
 }

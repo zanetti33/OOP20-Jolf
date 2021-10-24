@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,6 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import controller.Navigator;
+import controller.NavigatorImpl;
+import util.MyOptionPane;
+import util.MyTitle;
 
 public class OptionGUI extends JFrame {
 
@@ -33,10 +37,13 @@ public class OptionGUI extends JFrame {
 	private final JLabel title = new MyTitle("OPTIONS");
 	private final JButton resetButton = new JButton("RESET LEADERBOARD");
 	private final JButton ballColourButton = new JButton("BALL COLOUR");
+	private final Navigator navigator = new NavigatorImpl();
 	private final ActionListener listener = new ButtonListener();
+	private final MenuGUI menuGUI;
 	
 	public OptionGUI(MenuGUI menuGUI) {
 		super();
+		this.menuGUI = menuGUI;
 		this.setSize(OPTIONS_DIMENSION);
 		this.buttonLayout.setVgap(10);
 		this.mainPanel.setLayout(this.buttonLayout);
@@ -63,7 +70,12 @@ public class OptionGUI extends JFrame {
 		@Override
 		public void actionPerformed(final ActionEvent e) {
 			if (e.getSource().equals(OptionGUI.this.resetButton)) {
-				//to implement
+				try {
+					OptionGUI.this.navigator.resetLeaderboard();
+					MyOptionPane.resetLeaderboard(OptionGUI.this, OptionGUI.this.menuGUI);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			} else if (e.getSource().equals(OptionGUI.this.ballColourButton)) {
 				//to implement
 			}

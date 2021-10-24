@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 import controller.Controller;
 import model.MapObject;
 import model.Star;
+import util.MyOptionPane;
 
 public class GameGUI extends JFrame implements GameOutput, GameInput {
 

@@ -2,30 +2,28 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
+
+import util.Point2D;
+import util.Vector2D;
 
 public class Ball extends MovingObject {
 
 	public final static int DIAMETER = 15;
 	public final static int RADIUS = DIAMETER / 2;
 	
-	private final static double DEFAULT_ACCELERATION = 20f;
+	private final static double DEFAULT_ACCELERATION = 10f;
 	private final static Color BALL_COLOR = new Color(0, 255, 255);
-	
-	private Map map;
+
 	private double acceleration;
 	
-	public Ball(Point startingPos) {
+	public Ball(Point2D startingPos) {
 		super(startingPos);
 		this.map = null;
 	}
 
-	public void setMap(Map map) {
-		this.map = map;
-	}
-
 	public synchronized void setSpeed(Vector2D newSpeed) {
 		this.speed = newSpeed;
+		System.out.println(newSpeed);
 		this.acceleration = DEFAULT_ACCELERATION;
 	}
 	

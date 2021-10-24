@@ -3,6 +3,8 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import util.Point2D;
+
 public class Ice extends Surface {
 	
 	private static final double ICE_FRICTION = 0.5;

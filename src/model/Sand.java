@@ -3,6 +3,8 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import util.Point2D;
+
 public class Sand extends Surface {
 	
 	private static final double SAND_FRICTION = 50f;

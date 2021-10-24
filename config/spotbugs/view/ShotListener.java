@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import model.Vector2D;
+import util.Vector2D;
 
 public class ShotListener extends MouseAdapter implements ShotInput {
 

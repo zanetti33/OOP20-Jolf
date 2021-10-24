@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import controller.Controller;
 import controller.MapController;
 import model.EMap;
-import model.Vector2D;
+import util.Vector2D;
 import view.GameGUI;
 import view.GameInput;
 import view.GameOutput;

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Set;
 
+import util.Point2D;
+
 public class Wall implements MapObject {
 	
 	private final Point2D position;
@@ -44,13 +46,7 @@ public class Wall implements MapObject {
 
 	@Override
 	public void applyConstraintTo(final Ball ball) {
-		edges.stream()
-			.filter(edge -> edge.isHit(ball))
-			.forEach(edge -> {
-			ball.setSpeed(new Vector2D(edge.resultAngle(ball.getSpeed().getAngle()),
-					ball.getSpeed().getModule()));
-			System.out.println("COLPITO!");
-		});
+		edges.stream().forEach(edge -> edge.applyConstraintTo(ball));
 	}
 
 }

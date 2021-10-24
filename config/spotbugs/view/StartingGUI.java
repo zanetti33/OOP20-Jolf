@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -13,6 +14,8 @@ import javax.swing.JTextField;
 
 import controller.Controller;
 import controller.GameController;
+import util.MyOptionPane;
+import util.MyTitle;
 
 
 public class StartingGUI extends JFrame {
@@ -23,20 +26,25 @@ public class StartingGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static final int BORDER_WIDTH = 30;
 	
-	private final JPanel panel = new JPanel();
+	private final JPanel namePanel = new JPanel();
+	private final JPanel titlePanel = new JPanel();
 	private final JLabel title = new MyTitle("JOLF");
+	private final JLabel insertName = new JLabel("Insert name here: ");
 	private final JTextField nameTextField = new JTextField("Insert name here");
 	
 	public StartingGUI(List<String> courses, MenuGUI menuGUI) {
 		super();
-		this.add(this.panel);
-		this.panel.setLayout(new FlowLayout(FlowLayout.LEADING, BORDER_WIDTH, BORDER_WIDTH));
-		this.panel.add(this.title);
-		this.panel.add(this.nameTextField);
-		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.setLayout(new GridLayout(courses.size() + 2, 1));
+		this.titlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		this.titlePanel.add(this.title);
+		this.add(this.titlePanel);
+		this.namePanel.setLayout(new FlowLayout(FlowLayout.LEADING, BORDER_WIDTH, BORDER_WIDTH));
+		this.namePanel.add(this.insertName);
+		this.namePanel.add(this.nameTextField);
+		this.add(namePanel);
 		courses.stream().forEach(course -> {
-			JButton button = new JButton(course);
-			this.panel.add(button);
+			JButton button = new JButton("Course " + course);
+			this.add(button);
 			button.addActionListener(e -> {
 				String playerName = this.nameTextField.getText();
 				Controller controller = new GameController(playerName, course);
@@ -47,8 +55,9 @@ public class StartingGUI extends JFrame {
 				controller.start();
 				this.dispose();
 			});
-		});
+		});		
 		this.pack();
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent e) {

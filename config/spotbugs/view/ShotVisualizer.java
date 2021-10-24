@@ -1,6 +1,6 @@
 package view;
 
-import model.Vector2D;
+import util.Vector2D;
 
 public interface ShotVisualizer {
 
