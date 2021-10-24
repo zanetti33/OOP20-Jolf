@@ -12,8 +12,8 @@ public class Ball extends MovingObject {
 	public final static int RADIUS = DIAMETER / 2;
 	
 	private final static double DEFAULT_ACCELERATION = 10f;
-	private final static Color BALL_COLOR = new Color(0, 255, 255);
-
+	
+	private static Color ballColor = Color.WHITE;
 	private double acceleration;
 	
 	public Ball(Point2D startingPos) {
@@ -34,9 +34,13 @@ public class Ball extends MovingObject {
 		return this.acceleration;
 	}
 	
+	public static void setColor(Color newColor) {
+		ballColor = newColor;
+	}
+	
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(BALL_COLOR);
+		g.setColor(ballColor);
 		g.fillOval(this.getPosition().getIntX() - RADIUS, 
 				this.getPosition().getIntY() - RADIUS, 
 				DIAMETER, 

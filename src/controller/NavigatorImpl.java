@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,14 +16,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
+import model.Ball;
 import model.ECourse;
 import model.EMap;
 
 public class NavigatorImpl implements Navigator {
 	
-	public static final String SEP = File.separator;
-	public static final String FILE_LEADERBOARD = System.getProperty("user.dir") + SEP + "leaderboard.txt";
-	public static final String FILE_STAR = System.getProperty("user.dir") + SEP + "star.png";
+	private static final String SEP = File.separator;
+	private static final String FILE_LEADERBOARD = System.getProperty("user.dir") + SEP + "leaderboard.txt";
+	private static final String FILE_STAR = System.getProperty("user.dir") + SEP + "star.png";
+	private static final String[] BALL_COLORS = {"Black", "White", "Blue", "Orange", "Red", "Yellow", "Gray", "Green"};
 
 	@Override
 	public Map<String,Integer> getLeaderboard() throws IOException {
@@ -30,7 +33,7 @@ public class NavigatorImpl implements Navigator {
 		
 		try (final BufferedReader reader = new BufferedReader(new FileReader(FILE_LEADERBOARD))){
 			Optional<String> s = Optional.ofNullable(reader.readLine());
-			while (s.isEmpty()) {
+			while (s.isPresent() && !s.get().isBlank()) {
 				String[] line = s.get().split("=");
 				String name = line[0];
 				int score = Integer.parseInt(line[1]);
@@ -71,6 +74,38 @@ public class NavigatorImpl implements Navigator {
 	}
 	
 	@Override
+	public void changeBallColor(String color) {
+		switch(color) {
+			case "Black":
+				Ball.setColor(Color.BLACK);
+				break;
+			case "White":
+				Ball.setColor(Color.WHITE);
+				break;
+			case "Blue":
+				Ball.setColor(Color.BLUE);
+				break;
+			case "Orange":
+				Ball.setColor(Color.ORANGE);
+				break;
+			case "Red":
+				Ball.setColor(Color.RED);
+				break;
+			case "Yellow":
+				Ball.setColor(Color.YELLOW);
+				break;
+			case "Gray":
+				Ball.setColor(Color.GRAY);
+				break;
+			case "Green":
+				Ball.setColor(Color.GREEN);
+				break;
+			default:
+				Ball.setColor(Color.WHITE);
+		}		
+	}
+	
+	@Override
 	public String getStarImage() {
 		return FILE_STAR;
 	}
@@ -91,6 +126,10 @@ public class NavigatorImpl implements Navigator {
 			names.add(course.getName());
 		}
 		return names;
+	}
+	
+	public String[] getBallColors() {
+		return BALL_COLORS;
 	}
 	
 	private <K, V extends Comparable<? super V>> Map<K,V> sortByValue(Map<K,V> map) {

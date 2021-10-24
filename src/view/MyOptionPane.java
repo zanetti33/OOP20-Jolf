@@ -34,14 +34,8 @@ public class MyOptionPane extends JOptionPane {
 		}
 	}
 	
-	public static void changeBallColor(JFrame thisGUI, MenuGUI menuGUI) {
-		JOptionPane.showMessageDialog(thisGUI, "Color changed successfully", "Change ball color", JOptionPane.PLAIN_MESSAGE);
-		thisGUI.dispose();
-		menuGUI.setVisible(true);
-	}
-	
 	public static void resetLeaderboard(JFrame thisGUI, MenuGUI menuGUI) {
-		JOptionPane.showMessageDialog(thisGUI, "Leaderboard has been reset successfully", "Leaderboard reset", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(thisGUI, "Leaderboard has been reset successfully", "Leaderboard reset", JOptionPane.QUESTION_MESSAGE);
 		thisGUI.dispose();
 		menuGUI.setVisible(true);
 	}
