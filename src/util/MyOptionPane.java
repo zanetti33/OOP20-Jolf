@@ -46,6 +46,11 @@ public class MyOptionPane extends JOptionPane {
 		menuGUI.setVisible(true);
 	}
 	
+	public static void incorrectPlayerName(JFrame thisGUI) {
+		JOptionPane.showMessageDialog(thisGUI, "Your name must be at least one non-white char and must not contain \"=\"",
+				"Incorrect Name", JOptionPane.ERROR_MESSAGE);
+	}
+	
 	public static void gameOver(JFrame thisGUI, MenuGUI menuGUI, int totalShots) {
 		JOptionPane.showMessageDialog(thisGUI, "You made it with a total of " + totalShots + " shots!", "Well done!", JOptionPane.PLAIN_MESSAGE);
 		thisGUI.dispose();
