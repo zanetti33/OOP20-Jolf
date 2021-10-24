@@ -7,7 +7,6 @@ import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Double;
 
 import javax.swing.JPanel;
 
@@ -46,7 +45,8 @@ public class Star implements MapObject {
 	
 	@Override
 	public String toString() {
-		return "Star [isHole=" + isHole + ", isVisible=" + isVisible + ", isGameOver=" + isGameOver + ", hitbox: " + this.hitbox.getBounds().getCenterX() + ", " + this.hitbox.getBounds().getCenterY() + "]";
+		return "Star [isHole=" + isHole + ", isVisible=" + isVisible + ", isGameOver=" + isGameOver +
+				", hitbox: " + this.hitbox.getBounds().getCenterX() + ", " + this.hitbox.getBounds().getCenterY() + "]";
 	}
 
 	@Override

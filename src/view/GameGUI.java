@@ -8,7 +8,6 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.geom.Point2D;
 import java.util.List;
 
 import javax.swing.JFrame;

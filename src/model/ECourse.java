@@ -2,7 +2,7 @@ package model;
 
 public enum ECourse {
 
-	COURSE_1("1"), COURSE_2("2"), COURSE_3("3");
+	COURSE_1("1"), COURSE_2("2");
 	
 	private final String name;
 	
