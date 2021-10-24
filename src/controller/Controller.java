@@ -11,6 +11,8 @@ public interface Controller {
 	void setInput(GameInput inputView);
 	
 	void setOutput(GameOutput outputView);
+	
+	String getPlayerName();
 
 	void start();
 

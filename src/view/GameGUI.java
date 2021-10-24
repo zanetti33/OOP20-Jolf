@@ -26,7 +26,6 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 	private final static String DEFAULT_TOTAL_SHOTS_LABEL = "Total Shots: ";
 	private final static String DEFAULT_SHOTS_LABEL = "Map Shots: ";
-	private final static String DEFAULT_NAME_LABEL = "Name: ";
 	private final static Color GRASS_COLOR = new Color(34, 111, 84);
 	private final static int BORDER_THICKNESS = 20;
 	/**
@@ -41,7 +40,7 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 	private final JPanel displayShots = new JPanel(new GridLayout(1, 2));
 	private final JLabel totalShotsLabel = new JLabel(DEFAULT_TOTAL_SHOTS_LABEL);
 	private final JLabel shotsLabel = new JLabel(DEFAULT_SHOTS_LABEL);
-	private final JLabel nameLabel = new JLabel(DEFAULT_NAME_LABEL);
+	private final JLabel nameLabel = new JLabel();
 	private final InputPanel inputPanel;
 	private final JPanel displayGame = new JPanel() {
 		/**
@@ -71,6 +70,7 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 		this.inputPanel = new InputPanel(controller);
 		this.setLayout(new BorderLayout());
 		this.setResizable(false);
+		this.nameLabel.setText(controller.getPlayerName());
 		this.nameLabel.setBorder(new LineBorder(getBackground(), BORDER_THICKNESS));
 		this.displayShots.setBorder(new LineBorder(getBackground(), BORDER_THICKNESS));
 		this.displayShots.add(this.shotsLabel);
