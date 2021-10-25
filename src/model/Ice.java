@@ -7,7 +7,7 @@ import util.Point2D;
 
 public class Ice extends Surface {
 	
-	private static final double ICE_FRICTION = 0.5;
+	private static final double ICE_FRICTION = 0.9;
 	private static final Color ICE_COLOR = new Color(223, 255, 255);
 	
 	public Ice(final Point2D position, final int width, final int height) {
