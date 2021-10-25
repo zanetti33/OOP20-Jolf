@@ -5,6 +5,11 @@ import java.awt.geom.Rectangle2D;
 
 import util.Point2D;
 
+/**
+ * this is a generic surface present in a Jolf map
+ * @author loren
+ *
+ */
 public abstract class Surface implements MapObject {
 	
 	private final double friction;
@@ -13,6 +18,12 @@ public abstract class Surface implements MapObject {
 	private final int height;
 	private final Rectangle2D hitbox;
 	
+	/**
+	 * @param position
+	 * @param width
+	 * @param height
+	 * @param friction
+	 */
 	public Surface(final Point2D position, final int width, final int height, final double friction) {
 		this.position = position;
 		this.width = width;
@@ -39,6 +50,9 @@ public abstract class Surface implements MapObject {
 		}
 	}
 	
+	/**
+	 * @return this surface friction
+	 */
 	public final double getFriction() {
 		return this.friction;
 	}

@@ -30,7 +30,7 @@ public class Testing {
 		Vector2D v = new Vector2D(10, 20);
 		Point2D p = new Point2D(40, 30);
 		Edge e = new Edge(0, 0, 20, 20);
-		e = e.traslate(v);
+		e = e.translate(v);
 		assertTrue(e.getP1().getX() == 10);
 		assertTrue(e.getP1().getY() == 20);
 		assertTrue(e.getP2().getX() == 30);

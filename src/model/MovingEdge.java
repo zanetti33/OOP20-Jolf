@@ -6,12 +6,22 @@ import java.awt.Graphics;
 import util.Point2D;
 import util.Vector2D;
 
+/**
+ * this is an edge constantly moving on the map
+ * @author loren
+ *
+ */
 public class MovingEdge extends MovingObject implements MapObject {
 
 	private final static Color EDGE_COLOR = Color.BLACK;
 	
 	private Edge edge;
 	
+	/**
+	 * @param p1
+	 * @param p2
+	 * @param speed
+	 */
 	public MovingEdge(Point2D p1, Point2D p2, Vector2D speed) {
 		super(p1, speed);
 		this.edge = new Edge(p1, p2);
@@ -21,13 +31,13 @@ public class MovingEdge extends MovingObject implements MapObject {
 	protected synchronized void updatePosition(final double timeElapsed) {
 		Vector2D deltaX = this.speed.multiply(timeElapsed);
 		this.position = deltaX.traslate(this.getPosition());
-		this.edge = edge.traslate(deltaX);
+		this.edge = edge.translate(deltaX);
 	}
 	
 	@Override
 	public synchronized void setPosition(Point2D position) {
 		this.position = position;
-		this.edge = this.edge.traslate(new Vector2D(this.position, position));
+		this.edge = this.edge.translate(new Vector2D(this.position, position));
 	}
 
 	@Override
@@ -39,6 +49,9 @@ public class MovingEdge extends MovingObject implements MapObject {
 	protected void updateSpeed(double timeElapsed) {
 	}
 
+	/**
+	 * applies map constraints to this edge
+	 */
 	@Override
 	protected void applyConstraints() {
 		if (this.edge.getP1().getY() >= this.map.getSize().getHeight() ||

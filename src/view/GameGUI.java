@@ -22,6 +22,11 @@ import model.MapObject;
 import model.Star;
 import util.MyOptionPane;
 
+/**
+ * the interface for the game Jolf
+ * @author loren
+ *
+ */
 public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 	private final static String DEFAULT_TOTAL_SHOTS_LABEL = "Total Shots: ";
@@ -70,6 +75,10 @@ public class GameGUI extends JFrame implements GameOutput, GameInput {
 
 	};
 	
+	/**
+	 * @param controller
+	 * @param menuGUI
+	 */
 	public GameGUI(Controller controller, MenuGUI menuGUI) {
 		super();
 		this.controller = controller;

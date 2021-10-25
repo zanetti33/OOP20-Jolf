@@ -9,6 +9,11 @@ import util.Vector2D;
 import view.GameInput;
 import view.GameOutput;
 
+/**
+ * Simulates a game of Jolf of a single map
+ * @author loren
+ *
+ */
 public class MapController extends Thread implements Controller {
 
 	private final static long DELAY = 30l;
@@ -24,6 +29,9 @@ public class MapController extends Thread implements Controller {
 	private boolean holeCreated = false;
 	private int currentShots;
 	
+	/**
+	 * @param m
+	 */
 	public MapController(final Map m) {
 		this.map = m;
 	}

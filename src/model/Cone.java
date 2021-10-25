@@ -7,6 +7,11 @@ import java.util.Set;
 import util.Point2D;
 import util.Vector2D;
 
+/**
+ * a cone shaped obstacle
+ * @author loren
+ *
+ */
 public class Cone implements MapObject {
 	
 	private final Point2D point1;
@@ -15,6 +20,11 @@ public class Cone implements MapObject {
 	private static final Color CONE_COLOR = new Color(255, 115, 0);
 	private final Set<Edge> edges;
 	
+	/**
+	 * @param point1
+	 * @param point2
+	 * @param point3
+	 */
 	public Cone(final Point2D point1, final Point2D point2, final Point2D point3) {
 		this.point1 = point1;
 		this.point2 = point2;

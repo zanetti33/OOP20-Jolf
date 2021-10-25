@@ -7,6 +7,11 @@ import java.util.List;
 import util.Point2D;
 import util.Vector2D;
 
+/**
+ * the map of Jolf implementation
+ * @author loren
+ *
+ */
 public class MapImpl implements Map {
 
 	private final String name;
@@ -16,6 +21,14 @@ public class MapImpl implements Map {
 	private final List<MapObject> objects;
 	private final List<Star> stars;
 	
+	/**
+	 * @param name
+	 * @param size
+	 * @param ball
+	 * @param otherMovingObjects
+	 * @param otherObjects
+	 * @param stars
+	 */
 	private MapImpl(String name, Dimension size, Ball ball, List<MovingObject> otherMovingObjects, List<MapObject> otherObjects, List<Star> stars) {
 		this.name = name;
 		this.size = size;
@@ -29,6 +42,10 @@ public class MapImpl implements Map {
 		this.objects.addAll(stars);
 	}
 	
+	/**
+	 * @param map
+	 * @return an instance of this map
+	 */
 	public static MapImpl getMap(EMap map) {
 		switch(map) {
 			case TEST:
@@ -102,6 +119,10 @@ public class MapImpl implements Map {
 		}
 	}
 	
+	/**
+	 * @param mapName
+	 * @return the an instance of the map with the name mapName
+	 */
 	public static MapImpl getMap(String mapName) {
 		return MapImpl.getMap(EMap.get(mapName));
 	}

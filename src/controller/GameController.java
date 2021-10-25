@@ -16,6 +16,11 @@ import util.Vector2D;
 import view.GameInput;
 import view.GameOutput;
 
+/**
+ * Simulates a game of Jolf in a full course
+ * @author loren
+ *
+ */
 public class GameController implements Controller, GameInput, GameOutput {
 	
 	private GameOutput myOutput;
@@ -27,6 +32,10 @@ public class GameController implements Controller, GameInput, GameOutput {
 	private int mapIndex;
 	private int totalShots;
 	
+	/**
+	 * @param playerName
+	 * @param course
+	 */
 	public GameController(final String playerName, final Course course) {
 		this.totalShots = 0;
 		this.maps = course.getMaps();
@@ -35,6 +44,10 @@ public class GameController implements Controller, GameInput, GameOutput {
 		this.navigator = new NavigatorImpl();
 	}
 	
+	/**
+	 * @param playerName
+	 * @param course
+	 */
 	public GameController(final String playerName, final String course) {
 		this(playerName, CourseImpl.getCourse(course));
 	}
@@ -52,6 +65,9 @@ public class GameController implements Controller, GameInput, GameOutput {
 		this.mapController.forceStop();
 	}
 	
+	/**
+	 * The game goes to the next map in the course
+	 */
 	private void nextMap() {
 		if (this.mapIndex < this.maps.size()) {
 			this.mapController = new MapController(this.maps.get(this.mapIndex));

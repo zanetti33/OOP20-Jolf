@@ -6,6 +6,11 @@ import java.util.Set;
 
 import util.Point2D;
 
+/**
+ * a generic rectangular wall in a map of Jolf
+ * @author loren
+ *
+ */
 public class Wall implements MapObject {
 	
 	private final Point2D position;
@@ -14,6 +19,11 @@ public class Wall implements MapObject {
 	private final int height;
 	private final Set<Edge> edges;
 	
+	/**
+	 * @param position
+	 * @param width
+	 * @param height
+	 */
 	public Wall(final Point2D position, final int width, final int height) {
 		this.position = position;
 		this.width = width;

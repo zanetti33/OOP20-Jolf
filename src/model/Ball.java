@@ -6,6 +6,11 @@ import java.awt.Graphics;
 import util.Point2D;
 import util.Vector2D;
 
+/**
+ * a ball moving in a Jolf map
+ * @author loren
+ *
+ */
 public class Ball extends MovingObject {
 
 	public final static int DIAMETER = 15;
@@ -16,24 +21,42 @@ public class Ball extends MovingObject {
 	private static Color ballColor = Color.WHITE;
 	private double acceleration;
 	
+	/**
+	 * @param startingPos
+	 */
 	public Ball(Point2D startingPos) {
 		super(startingPos);
 		this.map = null;
 	}
 
+	/**
+	 * sets the ball speed
+	 * @param newSpeed
+	 */
 	public synchronized void setSpeed(Vector2D newSpeed) {
 		this.speed = newSpeed;
 		this.acceleration = DEFAULT_ACCELERATION;
 	}
 	
+	/**
+	 * sets the ball acceleration
+	 * @param newAcc
+	 */
 	public synchronized void setAcceleration(double newAcc) {
 		this.acceleration = newAcc;
 	}
 	
+	/**
+	 * @return the ball acceleration
+	 */
 	public synchronized double getAcceleration() {
 		return this.acceleration;
 	}
 	
+	/**
+	 * sets the ball color
+	 * @param newColor
+	 */
 	public static void setColor(Color newColor) {
 		ballColor = newColor;
 	}

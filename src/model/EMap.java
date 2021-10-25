@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * an enumeration of the maps in Jolf
+ * @author loren
+ *
+ */
 public enum EMap {
 
 	TEST("Test"), HOLE_1("Hole 1"), HOLE_2("Hole 2"), 
@@ -8,10 +13,17 @@ public enum EMap {
 
 	private final String name;
 	
+	/**
+	 * @param name
+	 */
 	private EMap(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * @param mapName
+	 * @return the corresponding map of the enumeration
+	 */
 	public static EMap get(String mapName) {
 		EMap result = null;
 		for (EMap map : EMap.values()) {
@@ -22,6 +34,9 @@ public enum EMap {
 		return result;
 	}
 
+	/**
+	 * @return the map name
+	 */
 	public String getName() {
 		return this.name;
 	}
