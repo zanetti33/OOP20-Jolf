@@ -70,7 +70,6 @@ public class LeaderboardGUI extends JFrame {
 		leaderboardPanel.add(headerPanel);
 		
 		for (Entry<String, Integer> e : leaderboard.entrySet()) {
-			System.out.println(e);
 			JPanel internPanel = new JPanel();
 			JLabel playerPosition = new JLabel(Integer.toString(position++));
 			JLabel playerName = new JLabel(e.getKey());
