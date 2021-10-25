@@ -16,9 +16,9 @@ import util.Point2D;
 
 public class Star implements MapObject {
 	
-	private final static int STAR_HEDGE = 30;
+	private final static int STAR_EDGE = 30;
 	private final static int HOLE_DIAMETER = 24;
-	private final static int STAR_HOLE_DISTANCE = (STAR_HEDGE - HOLE_DIAMETER) / 2;
+	private final static int STAR_HOLE_DISTANCE = (STAR_EDGE - HOLE_DIAMETER) / 2;
 	private final static Color HOLE_COLOR = Color.WHITE;
 	
 	private final Point2D position;
@@ -35,7 +35,7 @@ public class Star implements MapObject {
 		this.isHole = false;
 		this.isVisible = true;
 		this.isGameOver = false;
-		this.hitbox = new Rectangle2D.Double(position.getX(), position.getY(), STAR_HEDGE, STAR_HEDGE);
+		this.hitbox = new Rectangle2D.Double(position.getX(), position.getY(), STAR_EDGE, STAR_EDGE);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class Star implements MapObject {
 			} else {
 				Toolkit t = Toolkit.getDefaultToolkit();
 				Image i = t.getImage(this.navigator.getStarImage());
-				g.drawImage(i, this.position.getIntX(), this.position.getIntY(), STAR_HEDGE, STAR_HEDGE, gameGUI);
+				g.drawImage(i, this.position.getIntX(), this.position.getIntY(), STAR_EDGE, STAR_EDGE, gameGUI);
 			}
 		}
 	}
