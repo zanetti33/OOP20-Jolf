@@ -39,10 +39,6 @@ public class StartingGUI extends JFrame {
 	private final JLabel insertName = new JLabel("Insert name here: ");
 	private final JTextField nameTextField = new JTextField();
 	
-	/**
-	 * @param courses
-	 * @param menuGUI
-	 */
 	public StartingGUI(List<String> courses, MenuGUI menuGUI) {
 		super();
 		this.setLayout(new GridLayout(courses.size() + 2, 1));
