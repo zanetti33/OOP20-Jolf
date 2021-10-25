@@ -48,7 +48,7 @@ public interface Navigator {
 	List<String> getMaps();
 	
 	/**
-	 * @returna a list of the courses in the game
+	 * @return a list of the courses in the game
 	 */
 	List<String> getCourses();
 
