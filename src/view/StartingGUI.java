@@ -19,6 +19,11 @@ import util.MyOptionPane;
 import util.MyTitle;
 
 
+/**
+ * an interface that lets the user choose a course to play after inserting a name
+ * @author loren
+ *
+ */
 public class StartingGUI extends JFrame {
 
 	/**
@@ -34,6 +39,10 @@ public class StartingGUI extends JFrame {
 	private final JLabel insertName = new JLabel("Insert name here: ");
 	private final JTextField nameTextField = new JTextField();
 	
+	/**
+	 * @param courses
+	 * @param menuGUI
+	 */
 	public StartingGUI(List<String> courses, MenuGUI menuGUI) {
 		super();
 		this.setLayout(new GridLayout(courses.size() + 2, 1));

@@ -18,6 +18,11 @@ import controller.MapController;
 import util.MyOptionPane;
 import util.MyTitle;
 
+/**
+ * an interface that lets the user choose a map to play
+ * @author loren
+ *
+ */
 public class LevelsGUI extends JFrame {
 
 	/**
@@ -32,6 +37,10 @@ public class LevelsGUI extends JFrame {
 	private final JPanel titlePanel = new JPanel();
 	private final JLabel title = new MyTitle("LEVELS");
 	
+	/**
+	 * @param maps
+	 * @param menuGUI
+	 */
 	public LevelsGUI(List<String> maps, MenuGUI menuGUI) {
 		super();
 		this.setSize(LEVELS_DIMENSION);

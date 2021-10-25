@@ -20,6 +20,11 @@ import controller.NavigatorImpl;
 import util.MyOptionPane;
 import util.MyTitle;
 
+/**
+ * an interface that displays the main menù of Jolf
+ * @author loren
+ *
+ */
 public class MenuGUI extends JFrame {
 	/**
 	 * 
@@ -44,6 +49,9 @@ public class MenuGUI extends JFrame {
 	private final JButton quitButton = new JButton("QUIT");
 	private final ActionListener listener = new ButtonListener();
 	
+	/**
+	 * 
+	 */
 	public MenuGUI() {
 		super();
 		this.setSize(MENU_DIMENSION);
@@ -77,6 +85,11 @@ public class MenuGUI extends JFrame {
 		});
 	}
 	
+	/**
+	 * the ActionListener which directs the buttons input toward the right new interface
+	 * @author loren
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(final ActionEvent e) {

@@ -6,6 +6,11 @@ import java.awt.event.MouseEvent;
 
 import util.Vector2D;
 
+/**
+ * a mouse listener which catches a new shot by the user
+ * @author loren
+ *
+ */
 public class ShotListener extends MouseAdapter implements ShotInput {
 
 	private final ShotVisualizer visualizer; 
@@ -13,6 +18,9 @@ public class ShotListener extends MouseAdapter implements ShotInput {
 	private Point currentPoint = null;
 	private boolean enable = false;
 	
+	/**
+	 * @param visualizer
+	 */
 	public ShotListener(ShotVisualizer visualizer) {
 		this.visualizer = visualizer;
 	}

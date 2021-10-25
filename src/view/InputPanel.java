@@ -52,7 +52,7 @@ public class InputPanel extends JPanel implements GameInput, ShotVisualizer {
 	}
 
 	/**
-	 * updates the indicator of a possible shot
+	 * updates the indicator that shows the direction and power of a shot
 	 */
 	public void updateShotIntent(Vector2D direction) {
 		synchronized (this) {

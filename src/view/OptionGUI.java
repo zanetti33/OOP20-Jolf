@@ -20,6 +20,11 @@ import controller.NavigatorImpl;
 import util.MyOptionPane;
 import util.MyTitle;
 
+/**
+ * an interface which displays the option menù
+ * @author loren
+ *
+ */
 public class OptionGUI extends JFrame {
 
 	/**
@@ -41,6 +46,9 @@ public class OptionGUI extends JFrame {
 	private final ActionListener listener = new ButtonListener();
 	private final MenuGUI menuGUI;
 	
+	/**
+	 * @param menuGUI
+	 */
 	public OptionGUI(MenuGUI menuGUI) {
 		super();
 		this.menuGUI = menuGUI;
@@ -66,6 +74,11 @@ public class OptionGUI extends JFrame {
 		});
 	}
 	
+	/**
+	 * the ActionListener which directs the buttons input toward the right new interface
+	 * @author loren
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(final ActionEvent e) {

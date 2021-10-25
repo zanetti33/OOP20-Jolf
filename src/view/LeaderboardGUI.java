@@ -15,6 +15,11 @@ import javax.swing.JPanel;
 import util.MyOptionPane;
 import util.MyTitle;
 
+/**
+ * the interface that lets the user view the leaderboard
+ * @author loren
+ *
+ */
 public class LeaderboardGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -32,6 +37,10 @@ public class LeaderboardGUI extends JFrame {
 	private final JLabel scoreHeader = new JLabel("Score");
 	private final JLabel title = new MyTitle("LEADERBOARD");
 
+	/**
+	 * @param leaderboard
+	 * @param menuGUI
+	 */
 	public LeaderboardGUI(Map<String,Integer> leaderboard, MenuGUI menuGUI) {
 		super();
 		this.setSize(LEADERBOARD_DIMENSION);
@@ -57,6 +66,10 @@ public class LeaderboardGUI extends JFrame {
 		});
 	}
 	
+	/**
+	 * @param leaderboard
+	 * @return a JPanel displaying the leaderboard
+	 */
 	private JPanel leaderboardPanel(Map<String,Integer> leaderboard) {
 		JPanel leaderboardPanel = new JPanel();
 		leaderboardPanel.setLayout(new GridLayout(MAX_PLAYERS_ON_LEADERBOARD + 1, 1));
