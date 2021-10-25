@@ -67,7 +67,7 @@ public class NavigatorImpl implements Navigator {
 	@Override
 	public void resetLeaderboard() throws IOException {
 		try (final BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_LEADERBOARD))) {
-			writer.newLine();
+			writer.write("");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

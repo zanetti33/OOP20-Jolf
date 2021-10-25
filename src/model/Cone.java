@@ -49,7 +49,6 @@ public class Cone implements MapObject {
 		.forEach(edge -> {
 		ball.setSpeed(new Vector2D(edge.resultAngle(ball.getSpeed().getAngle()),
 				ball.getSpeed().getModule()));
-		System.out.println("COLPITO!");
 		});
 	}
 
